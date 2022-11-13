@@ -1,0 +1,85 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      2607,         77]
+NotebookOptionsPosition[      2027,         59]
+NotebookOutlinePosition[      2437,         75]
+CellTagsIndexPosition[      2394,         72]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "This", " ", "is", " ", "a", " ", "small", "*", " ", "utility", " ", 
+    "program", " ", "for", " ", "Mathematica", "  ", "*", " ", "Small", " ", 
+    "for", " ", "now"}], " ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"check", " ", "=", " ", "True"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"findXinput", " ", "=", " ", "0"}], ";"}], "\n", 
+   RowBox[{"Checkbox", "[", 
+    RowBox[{"Dynamic", "[", "check", "]"}], "]"}], "\n", 
+   RowBox[{"InputField", "[", 
+    RowBox[{
+     RowBox[{"Dynamic", "[", "findXinput", "]"}], ",", 
+     RowBox[{"FieldSize", "->", "Medium"}], ",", 
+     RowBox[{"ContinuousAction", "->", "False"}]}], "]"}]}]}]], "Code",
+ CellChangeTimes->{
+  3.877320962024328*^9, {3.877320993853486*^9, 3.8773210350883527`*^9}, {
+   3.8773210841831036`*^9, 3.8773210847629013`*^9}},
+ CellLabel->"In[5]:=",ExpressionUUID->"120a1e73-496e-4962-916f-278df1b1523c"],
+
+Cell[BoxData[
+ CheckboxBox[Dynamic[$CellContext`check]]], "Output",
+ CellChangeTimes->{{3.877321089109383*^9, 3.8773210892163825`*^9}},
+ CellLabel->"Out[7]=",ExpressionUUID->"32eb0ff7-50b6-450d-a0bb-fb68e5d96533"],
+
+Cell[BoxData[
+ InputFieldBox[Dynamic[$CellContext`findXinput],
+  ContinuousAction->False,
+  FieldSize->Medium]], "Output",
+ CellChangeTimes->{{3.877321089109383*^9, 3.8773210892193823`*^9}},
+ CellLabel->"Out[8]=",ExpressionUUID->"ae83e7d9-4344-46e1-83cd-506499e4687a"]
+}, Open  ]]
+},
+WindowSize->{1440., 777.75},
+WindowMargins->{{-6, Automatic}, {Automatic, -6}},
+FrontEndVersion->"13.1 for Microsoft Windows (64-bit) (August 22, 2022)",
+StyleDefinitions->"ReverseColor.nb",
+ExpressionUUID->"1a4eea07-be44-49d2-a00a-b718f862ca27"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 944, 22, 121, "Code",ExpressionUUID->"120a1e73-496e-4962-916f-278df1b1523c"],
+Cell[1527, 46, 213, 3, 32, "Output",ExpressionUUID->"32eb0ff7-50b6-450d-a0bb-fb68e5d96533"],
+Cell[1743, 51, 268, 5, 40, "Output",ExpressionUUID->"ae83e7d9-4344-46e1-83cd-506499e4687a"]
+}, Open  ]]
+}
+]
+*)
+

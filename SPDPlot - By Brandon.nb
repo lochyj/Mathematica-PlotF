@@ -1,0 +1,2836 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[    118724,       2828]
+NotebookOptionsPosition[    117907,       2805]
+NotebookOutlinePosition[    118447,       2825]
+CellTagsIndexPosition[    118404,       2822]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.875406853436988*^9, 
+  3.875406853925048*^9}},ExpressionUUID->"c645e0ce-eeff-4fd5-a4b1-\
+4d8e3528e3fa"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", 
+         RowBox[{"--", 
+          RowBox[{"--", 
+           RowBox[{"--", 
+            RowBox[{"--", 
+             RowBox[{"--", 
+              RowBox[{"--", 
+               RowBox[{"--", 
+                RowBox[{"--", 
+                 RowBox[{"-", "Global"}]}]}]}]}]}]}]}]}]}]}]}]}], " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"constants", "--"}], "--"}], "--"}], "--"}], 
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", 
+         RowBox[{"--", 
+          RowBox[{"--", 
+           RowBox[{"--", 
+            RowBox[{"--", 
+             RowBox[{"-", "\n", "Customise"}]}]}]}]}]}]}]}]}], " ", "these", 
+     " ", "to", " ", "your", " ", 
+     RowBox[{"heart", "'"}], "s", " ", 
+     RowBox[{"content", ".", "\n", "Restart"}], " ", "mathematica", " ", 
+     "when", " ", "changing", " ", "these", " ", "options"}], ",", " ", 
+    RowBox[{"or", " ", "they", " ", "many", " ", "not", " ", 
+     RowBox[{"apply", "."}]}]}], "\n", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"spdFont", "=", "\"\<Nunito\>\""}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"spdColourPlot", "=", "LightGreen"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"spdColourPoint1", "=", "Red"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"spdColourPoint2", "=", "Purple"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"spdColourLine", "=", "Orange"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"spdRoundPrecision", "=", "5"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"spdEvaluationTime", "=", 
+     RowBox[{"Quotient", "[", 
+      RowBox[{"Developer`$MaxMachineInteger", ",", "9"}], "]"}]}], ";"}], 
+   "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{
+     "Make", " ", "this", " ", "longer", " ", "than", " ", "30", " ", 
+      "seconds"}], ",", " ", 
+     RowBox[{
+     "since", " ", "it", " ", "sets", " ", "the", " ", "local", " ", 
+      "DynamicEvaluationTimeout", " ", "as", " ", "well"}]}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"spdMessage", "=", "\"\<Sharing Is Caring - Brandon\>\""}], ";"}],
+    "\n", "\n", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", 
+         RowBox[{"--", 
+          RowBox[{"--", 
+           RowBox[{"--", 
+            RowBox[{"--", 
+             RowBox[{"--", 
+              RowBox[{"--", 
+               RowBox[{"--", 
+                RowBox[{"--", 
+                 RowBox[{"-", "StartUp"}]}]}]}]}]}]}]}]}]}]}]}]}], " ", 
+     "quality", " ", "of", " ", "life", " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"things", "--"}], "--"}], "--"}], "--"}], 
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", 
+         RowBox[{"--", 
+          RowBox[{"--", 
+           RowBox[{"--", 
+            RowBox[{"--", "-"}]}]}]}]}]}]}]}]}], "*)"}], "\n", 
+   RowBox[{"(*", 
+    RowBox[{"Functions", " ", "to", " ", "make", " ", "listable"}], "*)"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{"SetAttributes", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "spdFindX", ",", "spdFindY", ",", "spdFindGrad", ",", "spdFindTangent",
+         ",", "spdFindNormal"}], "}"}], ",", "Listable"}], "]"}], ";"}], "\n",
+    "\n", 
+   RowBox[{"(*", 
+    RowBox[{"Set", " ", "FrontEnd", " ", "DynamicEvaluationTimeout"}], "*)"}],
+    "\n", 
+   RowBox[{
+    RowBox[{"SetOptions", "[", 
+     RowBox[{"$FrontEnd", ",", 
+      RowBox[{"DynamicEvaluationTimeout", "->", "spdEvaluationTime"}]}], 
+     "]"}], ";"}], "\n", "\n", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", 
+         RowBox[{"--", 
+          RowBox[{"--", 
+           RowBox[{"--", 
+            RowBox[{"--", 
+             RowBox[{"--", 
+              RowBox[{"--", 
+               RowBox[{"--", 
+                RowBox[{"--", 
+                 RowBox[{"-", "Quality"}]}]}]}]}]}]}]}]}]}]}]}]}], " ", "of", 
+     " ", "life", " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"functions", "--"}], "--"}], "--"}], "--"}], "--"}], 
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", 
+         RowBox[{"--", 
+          RowBox[{"--", 
+           RowBox[{"--", "-"}]}]}]}]}]}]}]}], "*)"}], "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Execute", " ", "a", " ", "new", " ", "mathematica", " ", "process"}], 
+    "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"spdNewNoteBook", ":=", 
+     RowBox[{"SystemOpen", "[", 
+      RowBox[{"FileNameJoin", "[", 
+       RowBox[{"{", 
+        RowBox[{"$InstallationDirectory", ",", "\"\<Mathematica\>\""}], "}"}],
+        "]"}], "]"}]}], ";"}], "\n", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Convert", " ", "equation", " ", "into", " ", "clean", " ", 
+     "TraditionalForm"}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"spdForm", "[", "expr_", "]"}], ":=", 
+     RowBox[{"StandardForm", "@", 
+      RowBox[{"TraditionalForm", "@", "expr"}]}]}], ";"}], "\n", "\n", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", 
+         RowBox[{"--", 
+          RowBox[{"--", 
+           RowBox[{"--", 
+            RowBox[{"--", 
+             RowBox[{"--", 
+              RowBox[{"--", 
+               RowBox[{"--", 
+                RowBox[{"--", 
+                 RowBox[{"-", 
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"Documentation", "--"}], "--"}], "--"}], 
+                   "--"}]}]}]}]}]}]}]}]}]}]}]}]}]}], 
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", 
+         RowBox[{"--", 
+          RowBox[{"--", 
+           RowBox[{"--", 
+            RowBox[{"--", "-"}]}]}]}]}]}]}]}]}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"spdPlot", "::", "usage"}], " ", "=", " ", 
+     "\"\<Speed Plot\nThe clean, user-friendly plot function.\nInspired by \
+Detailed Plot and Joseph's GigaChadPlot.\nCheck out \
+https://rotaryviper.github.io/JMSS-Mathematica-Hub/ for other mathematica \
+functions.\n\nYou can do whatever you want with this code. Use it, fix it, \
+edit it, share it. This is yours to keep :)\n\nHow to use:\n\tInitialise the \
+functions\n\t\t1. Open the spdFuncs notebook.\n\t\t2. Click within the \
+notebook code cell.\n\t\t3. Shift + Enter to initialise the functions.\n\n\t\
+Using the functions\n\t\t1. Click into any other notebook.\n\t\t2. Type: \
+spdPlot[x]\n\t\t3. Shift + Enter to run the function.\n\t\t4. Watch magic \
+happen :)\n\t\t5. Check/Uncheck the checkboxes on the left as you desire.\n\n\
+\tFind X & Find Y\n\t\t1. Type any number or numeric symbol you want. Eg: 2, \
+-\[ExponentialE], \!\(\*FractionBox[\(\[Pi]\), \(2\)]\), \
+5\!\(\*SqrtBox[\(3\)]\)\n\t\t2. Click enter.\n\t\t3. Purple dots will appear \
+on the X or Y coordinate on any graph.\nSyntax:\n\tIts the exact same as the \
+mathematica Plot function now.\n\tCustom rules:\n\t\tIncremental -> True\n\t\t\
+Prints the graph and every point as they are processed, instead of waiting \
+for everything to be processed to show you the result.\n\t\tSet this option \
+to False if you are putting spdPlot in Manipulate.\n\nNote:\n\tType smaller \
+equations are on the left, bigger equations are on the right. It runs faster \
+that way.\n\tThis plot function can only calculate real numbers.\n\tI tried \
+keeping the function as similar to Plot as possible. But I'm still improving \
+everyday.\nSharing is caring - Brandon\n\>\""}], ";"}], "\n", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", 
+         RowBox[{"--", 
+          RowBox[{"--", 
+           RowBox[{"--", 
+            RowBox[{"--", 
+             RowBox[{"--", 
+              RowBox[{"--", 
+               RowBox[{"--", 
+                RowBox[{"--", 
+                 RowBox[{"-", 
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"Processing", "--"}], "--"}], "--"}], 
+                   "--"}]}]}]}]}]}]}]}]}]}]}]}]}]}], 
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", 
+         RowBox[{"--", 
+          RowBox[{"--", 
+           RowBox[{"--", 
+            RowBox[{"--", 
+             RowBox[{"-", "\n", "I"}]}]}]}]}]}]}]}]}], " ", "like", " ", 
+     "this", " ", "plot", "\n", "I", " ", 
+     RowBox[{"don", "'"}], "t", " ", "care", " ", "too", " ", "much", " ", 
+     "about", " ", "commenting", " ", "this", " ", "but", " ", "It", " ", 
+     "Just", " ", "Works"}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"spdPlotFast", "[", 
+      RowBox[{"equ_", ",", 
+       RowBox[{"dom", ":", 
+        RowBox[{"{", 
+         RowBox[{"_", ",", 
+          RowBox[{"_", "?", "NumericQ"}], ",", 
+          RowBox[{"_", "?", "NumericQ"}]}], "}"}], ":", 
+        RowBox[{"{", 
+         RowBox[{"x", ",", 
+          RowBox[{"-", "10"}], ",", "10"}], "}"}]}], ",", 
+       RowBox[{"plotOptions", ":", 
+        RowBox[{"OptionsPattern", "[", "]"}]}]}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"spdPlotFast", "[", 
+       RowBox[{"equ", ",", "dom", ",", "plotOptions"}], "]"}], "=", 
+      RowBox[{"Plot", "[", 
+       RowBox[{
+        RowBox[{"Tooltip", "[", "equ", "]"}], ",", " ", "dom", ",", " ", 
+        RowBox[{"Evaluate", "@", 
+         RowBox[{"FilterRules", "[", 
+          RowBox[{
+           RowBox[{"{", "plotOptions", "}"}], ",", 
+           RowBox[{"Options", "@", "Plot"}]}], "]"}]}], ",", " ", 
+        RowBox[{"PlotRange", "->", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"-", "10"}], ",", "10"}], "}"}]}], ",", " ", 
+        RowBox[{"AspectRatio", "->", "1"}], ",", " ", 
+        RowBox[{"PlotLegends", "->", "\"\<Expressions\>\""}], ",", " ", 
+        RowBox[{"Prolog", " ", "->", " ", 
+         RowBox[{"{", 
+          RowBox[{"spdColourPlot", ",", " ", 
+           RowBox[{"Rectangle", "[", 
+            RowBox[{
+             RowBox[{"Scaled", "[", 
+              RowBox[{"{", 
+               RowBox[{"0", ",", " ", "0"}], "}"}], "]"}], ",", " ", 
+             RowBox[{"Scaled", "[", 
+              RowBox[{"{", 
+               RowBox[{"1", ",", " ", "1"}], "}"}], "]"}]}], "]"}]}], "}"}]}],
+         ",", " ", 
+        RowBox[{"ImageSize", "\[Rule]", "Medium"}], ",", " ", 
+        RowBox[{"PlotLabel", "->", 
+         RowBox[{"Style", "[", 
+          RowBox[{"spdMessage", ",", 
+           RowBox[{"FontFamily", "\[Rule]", "spdFont"}]}], "]"}]}]}], 
+       "]"}]}]}], ";"}], "\n", "\n", "\n", 
+   RowBox[{"(*", 
+    RowBox[{"coords", " ", "is", " ", "a", " ", "list", " ", "btw"}], "*)"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"spdCubic", "[", "coords_", "]"}], ":=", 
+     RowBox[{"{", "\n", 
+      RowBox[{"DynamicModule", "[", 
+       RowBox[{
+        RowBox[{"{", "\n", 
+         RowBox[{"cubic", ",", "\n", "abcd", ",", "\n", "answer"}], "\n", 
+         "}"}], ",", 
+        RowBox[{"{", "\n", 
+         RowBox[{"(*", 
+          RowBox[{"Define", " ", "the", " ", "cubic", " ", "function"}], 
+          "*)"}], "\n", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"cubic", "[", "x_", "]"}], ":=", 
+           RowBox[{
+            RowBox[{"a", " ", 
+             SuperscriptBox["x", "3"]}], "+", 
+            RowBox[{"b", " ", 
+             SuperscriptBox["x", "2"]}], "+", 
+            RowBox[{"c", " ", "x"}], "+", "d"}]}], ";", "\n", 
+          RowBox[{"(*", 
+           RowBox[{
+           "Solve", " ", "the", " ", "cubic", " ", "with", " ", "points", " ",
+             "given"}], "*)"}], "\n", 
+          RowBox[{"abcd", "=", 
+           RowBox[{"Solve", "[", 
+            RowBox[{
+             RowBox[{"Table", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"cubic", "[", 
+                 RowBox[{
+                  RowBox[{"coords", "[", 
+                   RowBox[{"[", "point", "]"}], "]"}], "[", 
+                  RowBox[{"[", "1", "]"}], "]"}], "]"}], "==", 
+                RowBox[{
+                 RowBox[{"coords", "[", 
+                  RowBox[{"[", "point", "]"}], "]"}], "[", 
+                 RowBox[{"[", "2", "]"}], "]"}]}], ",", 
+               RowBox[{"{", 
+                RowBox[{"point", ",", 
+                 RowBox[{"Length", "[", "coords", "]"}]}], "}"}]}], "]"}], 
+             ",", 
+             RowBox[{"{", 
+              RowBox[{"a", ",", "b", ",", "c", ",", "d"}], "}"}]}], "]"}]}], 
+          ";", "\n", 
+          RowBox[{"(*", 
+           RowBox[{
+           "Parse", " ", "abcd", " ", "into", " ", "the", " ", "cubic", " ", 
+            "formula"}], "*)"}], "\n", 
+          RowBox[{"answer", "=", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Simplify", "[", 
+              RowBox[{"a", "/.", "abcd"}], "]"}], "*", 
+             SuperscriptBox["x", "3"]}], "+", 
+            RowBox[{
+             RowBox[{"Simplify", "[", 
+              RowBox[{"b", "/.", "abcd"}], "]"}], "*", 
+             SuperscriptBox["x", "2"]}], "+", 
+            RowBox[{
+             RowBox[{"Simplify", "[", 
+              RowBox[{"c", "/.", "abcd"}], "]"}], "*", "x"}], "+", 
+            RowBox[{"Simplify", "[", 
+             RowBox[{"d", "/.", "abcd"}], "]"}]}]}], ";", "\n", 
+          RowBox[{"Return", "[", 
+           RowBox[{
+            RowBox[{"spdForm", "@", 
+             RowBox[{"answer", "[", 
+              RowBox[{"[", "1", "]"}], "]"}]}], ",", "\n", "spdCubic"}], 
+           "]"}]}], "\n", "}"}], ",", "\n", 
+        RowBox[{"(*", 
+         RowBox[{"IMPORTANT", ",", " ", 
+          RowBox[{"must", " ", "save", " ", "definitions"}]}], "*)"}], "\n", 
+        RowBox[{"SaveDefinitions", "\[Rule]", "True"}]}], "]"}], "\n", 
+      "}"}]}], ";"}], "\n", "\n", "\n", 
+   RowBox[{"(*", 
+    RowBox[{"coords", " ", "is", " ", "a", " ", "list", " ", "btw"}], "*)"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"spdQuad", "[", "coords_", "]"}], ":=", 
+     RowBox[{"{", "\n", 
+      RowBox[{"DynamicModule", "[", 
+       RowBox[{
+        RowBox[{"{", "\n", 
+         RowBox[{"quad", ",", "\n", "abc", ",", "\n", "answer"}], "\n", "}"}],
+         ",", 
+        RowBox[{"{", "\n", 
+         RowBox[{"(*", 
+          RowBox[{"Define", " ", "the", " ", "quadratic", " ", "function"}], 
+          "*)"}], "\n", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"quad", "[", "x_", "]"}], ":=", 
+           RowBox[{
+            RowBox[{"a", " ", 
+             SuperscriptBox["x", "2"]}], "+", 
+            RowBox[{"b", " ", "x"}], "+", "c"}]}], ";", "\n", 
+          RowBox[{"(*", 
+           RowBox[{
+           "Solve", " ", "the", " ", "quadratic", " ", "with", " ", "points", 
+            " ", "given"}], "*)"}], "\n", 
+          RowBox[{"abc", "=", 
+           RowBox[{"Solve", "[", 
+            RowBox[{
+             RowBox[{"Table", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"quad", "[", 
+                 RowBox[{
+                  RowBox[{"coords", "[", 
+                   RowBox[{"[", "point", "]"}], "]"}], "[", 
+                  RowBox[{"[", "1", "]"}], "]"}], "]"}], "==", 
+                RowBox[{
+                 RowBox[{"coords", "[", 
+                  RowBox[{"[", "point", "]"}], "]"}], "[", 
+                 RowBox[{"[", "2", "]"}], "]"}]}], ",", 
+               RowBox[{"{", 
+                RowBox[{"point", ",", 
+                 RowBox[{"Length", "[", "coords", "]"}]}], "}"}]}], "]"}], 
+             ",", 
+             RowBox[{"{", 
+              RowBox[{"a", ",", "b", ",", "c", ",", "d"}], "}"}]}], "]"}]}], 
+          ";", "\n", 
+          RowBox[{"(*", 
+           RowBox[{
+           "Parse", " ", "abcd", " ", "into", " ", "the", " ", "cubic", " ", 
+            "formula"}], "*)"}], "\n", 
+          RowBox[{"answer", "=", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Simplify", "[", 
+              RowBox[{"a", "/.", "abc"}], "]"}], "*", 
+             SuperscriptBox["x", "2"]}], "+", 
+            RowBox[{
+             RowBox[{"Simplify", "[", 
+              RowBox[{"b", "/.", "abc"}], "]"}], "*", "x"}], "+", 
+            RowBox[{"Simplify", "[", 
+             RowBox[{"c", "/.", "abc"}], "]"}]}]}], ";", "\n", 
+          RowBox[{"Return", "[", 
+           RowBox[{
+            RowBox[{"spdForm", "@", 
+             RowBox[{"answer", "[", 
+              RowBox[{"[", "1", "]"}], "]"}]}], ",", "\n", "spdQuad"}], 
+           "]"}]}], "\n", "}"}], ",", "\n", 
+        RowBox[{"(*", 
+         RowBox[{"IMPORTANT", ",", " ", 
+          RowBox[{"must", " ", "save", " ", "definitions"}]}], "*)"}], "\n", 
+        RowBox[{"SaveDefinitions", "\[Rule]", "True"}]}], "]"}], "\n", 
+      "}"}]}], ";"}], "\n", "\n", "\n", 
+   RowBox[{"(*", 
+    RowBox[{"Inverse", " ", "any", " ", "equation"}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"spdInverse", "[", 
+      RowBox[{"expr_", ",", 
+       RowBox[{"dom_", ":", "x"}]}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"spdInverse", "[", 
+       RowBox[{"expr", ",", "dom"}], "]"}], "=", 
+      RowBox[{
+       RowBox[{"y", "/.", 
+        RowBox[{"Solve", "[", 
+         RowBox[{
+          RowBox[{"dom", "==", 
+           RowBox[{"(", 
+            RowBox[{"expr", "/.", 
+             RowBox[{"dom", "->", "y"}]}], ")"}]}], ",", "y", ",", "Reals"}], 
+         "]"}]}], "//", "spdForm"}]}]}], ";"}], "\n", "\n", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Find", " ", "any", " ", "X", " ", "point", " ", "on", " ", "graph"}], 
+    "*)"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"spdFindX", "[", 
+      RowBox[{"equ_", ",", "xCoord_", ",", 
+       RowBox[{"dom_", ":", "x"}]}], "]"}], ":=", 
+     RowBox[{"{", "\n", 
+      RowBox[{"Quiet", "@", 
+       RowBox[{"DynamicModule", "[", 
+        RowBox[{
+         RowBox[{"{", "\n", 
+          RowBox[{"(*", 
+           RowBox[{
+            RowBox[{"Compute", " ", "yCoord"}], ",", " ", 
+            RowBox[{
+            "and", " ", "check", " ", "if", " ", "yCoord", " ", "is", " ", 
+             "even", " ", "on", " ", "the", " ", "graph"}]}], "*)"}], "\n", 
+          RowBox[{
+           RowBox[{"yCoord", "=", 
+            RowBox[{"Flatten", "@", 
+             RowBox[{"Cases", "[", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"equ", "/.", 
+                 RowBox[{"dom", "->", "xCoord"}]}], "}"}], ",", 
+               RowBox[{"_", "?", "NumericQ"}]}], "]"}]}]}], ",", "\n", 
+           "result"}], "\n", "}"}], ",", 
+         RowBox[{"{", "\n", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"spdFindX", "[", 
+             RowBox[{"equ", ",", "xCoord", ",", "dom"}], "]"}], "=", 
+            "yCoord"}], ";", "\n", 
+           RowBox[{"(*", 
+            RowBox[{
+            "Return", " ", "something", " ", "if", " ", "yCoord", " ", "is", 
+             " ", "not", " ", "empty"}], "*)"}], "\n", 
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{"yCoord", "==", 
+              RowBox[{"{", "}"}]}], ",", "\n", 
+             RowBox[{"result", "=", 
+              RowBox[{"{", "}"}]}], ",", "\n", 
+             RowBox[{"(*", 
+              RowBox[{"Return", " ", "all", " ", "xCoords", " ", "with", " ", 
+               RowBox[{"yCoords", ".", " ", "Delete"}], " ", "duplicates"}], 
+              "*)"}], "\n", 
+             RowBox[{"(*", 
+              RowBox[{"Include", " ", "gradient"}], "*)"}], "\n", 
+             RowBox[{
+              RowBox[{"spdFindX", "[", 
+               RowBox[{"equ", ",", "xCoord", ",", "dom"}], "]"}], "=", 
+              RowBox[{"result", "=", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"{", "equ", "}"}], ",", 
+                 RowBox[{"DeleteDuplicates", "@", 
+                  RowBox[{"Table", "[", 
+                   RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"xCoord", ",", 
+                    RowBox[{"yCoord", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], ",", 
+                    RowBox[{
+                    RowBox[{"D", "[", 
+                    RowBox[{"equ", ",", "dom"}], "]"}], "/.", 
+                    RowBox[{"dom", "->", "xCoord"}]}]}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"i", ",", 
+                    RowBox[{"Length", "[", "yCoord", "]"}]}], "}"}]}], 
+                   "]"}]}]}], "}"}]}]}]}], "\n", "]"}], ";", "\n", 
+           RowBox[{"Return", "[", 
+            RowBox[{"result", ",", "spdFindX"}], "]"}]}], "\n", "}"}], ",", 
+         "\n", 
+         RowBox[{"(*", 
+          RowBox[{"IMPORTANT", ",", " ", 
+           RowBox[{"must", " ", "save", " ", "definitions"}]}], "*)"}], "\n", 
+         RowBox[{"SaveDefinitions", "\[Rule]", "True"}]}], "]"}]}], "\n", 
+      "}"}]}], ";"}], "\n", "\n", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Find", " ", "any", " ", "Y", " ", "point", " ", "on", " ", "graph"}], 
+    "*)"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"spdFindY", "[", 
+      RowBox[{"equ_", ",", "yCoord_", ",", 
+       RowBox[{"dom_", ":", "x"}], ",", 
+       RowBox[{"domLow_", ":", 
+        RowBox[{"-", "10"}]}], ",", 
+       RowBox[{"domHigh_", ":", "10"}]}], "]"}], ":=", 
+     RowBox[{"{", "\n", 
+      RowBox[{"(*", 
+       RowBox[{
+       "Find", " ", "any", " ", "point", " ", "on", " ", "the", " ", 
+        "graph"}], "*)"}], "\n", 
+      RowBox[{"Quiet", "@", 
+       RowBox[{"DynamicModule", "[", 
+        RowBox[{
+         RowBox[{"{", "\n", 
+          RowBox[{"(*", 
+           RowBox[{
+            RowBox[{"Compute", " ", "xCoord"}], ",", " ", 
+            RowBox[{
+            "and", " ", "check", " ", "if", " ", "xCoord", " ", "is", " ", 
+             "even", " ", "on", " ", "the", " ", "graph"}]}], "*)"}], "\n", 
+          RowBox[{
+           RowBox[{"xCoord", "=", 
+            RowBox[{"Flatten", "@", 
+             RowBox[{"Cases", "[", 
+              RowBox[{
+               RowBox[{"dom", "/.", 
+                RowBox[{"Solve", "[", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"equ", "==", "yCoord"}], "&&", 
+                   RowBox[{"domLow", "<=", "dom", "<=", "domHigh"}]}], ",", 
+                  "dom", ",", "Reals"}], "]"}]}], ",", 
+               RowBox[{"_", "?", "NumericQ"}]}], "]"}]}]}], ",", "\n", 
+           RowBox[{"result", "=", 
+            RowBox[{"{", "}"}]}]}], "}"}], ",", "\n", 
+         RowBox[{"{", "\n", 
+          RowBox[{"(*", 
+           RowBox[{
+           "Return", " ", "something", " ", "if", " ", "xCoord", " ", "is", 
+            " ", "not", " ", "empty"}], "*)"}], "\n", 
+          RowBox[{
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{"xCoord", "==", 
+              RowBox[{"{", "}"}]}], ",", "\n", 
+             RowBox[{"{", "}"}], ",", "\n", 
+             RowBox[{"(*", 
+              RowBox[{"Return", " ", "all", " ", "xCoords", " ", "with", " ", 
+               RowBox[{"yCoords", ".", " ", "Delete"}], " ", "duplicates"}], 
+              "*)"}], "\n", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"spdFindY", "[", 
+                RowBox[{
+                "equ", ",", "yCoord", ",", "dom", ",", "domLow", ",", 
+                 "domHigh"}], "]"}], "=", 
+               RowBox[{"result", "=", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"{", "equ", "}"}], ",", 
+                  RowBox[{"DeleteDuplicates", "@", 
+                   RowBox[{"Table", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"xCoord", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], ",", "yCoord", ",", 
+                    RowBox[{
+                    RowBox[{"D", "[", 
+                    RowBox[{"equ", ",", "dom"}], "]"}], "/.", 
+                    RowBox[{"dom", "->", 
+                    RowBox[{"xCoord", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}]}]}]}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"i", ",", 
+                    RowBox[{"Length", "[", "xCoord", "]"}]}], "}"}]}], 
+                    "]"}]}]}], "}"}]}]}], ";"}]}], "\n", "]"}], ";", "\n", 
+           RowBox[{"Return", "[", 
+            RowBox[{"result", ",", "spdFindY"}], "]"}]}], "\n", "}"}], ",", 
+         "\n", 
+         RowBox[{"(*", 
+          RowBox[{"IMPORTANT", ",", " ", 
+           RowBox[{"must", " ", "save", " ", "definitions"}]}], "*)"}], "\n", 
+         RowBox[{"SaveDefinitions", "\[Rule]", "True"}]}], "]"}]}], "\n", 
+      "}"}]}], ";"}], "\n", "\n", "\n", 
+   RowBox[{"(*", 
+    RowBox[{"Find", " ", "gradients"}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"spdFindGrad", "[", 
+      RowBox[{"equ_", ",", "gradient_", ",", 
+       RowBox[{"dom_", ":", "x"}], ",", 
+       RowBox[{"domLow_", ":", 
+        RowBox[{"-", "10"}]}], ",", 
+       RowBox[{"domHigh_", ":", "10"}]}], "]"}], ":=", 
+     RowBox[{"{", "\n", 
+      RowBox[{"Quiet", "@", 
+       RowBox[{"DynamicModule", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"cpX", ",", "cpY", ",", "result"}], "}"}], ",", 
+         RowBox[{"{", "\n", 
+          RowBox[{"(*", 
+           RowBox[{"Iterate", " ", "over", " ", "all", " ", "lists"}], "*)"}],
+           "\n", 
+          RowBox[{
+           RowBox[{"cpX", "=", 
+            RowBox[{"Cases", "[", 
+             RowBox[{
+              RowBox[{"dom", "/.", 
+               RowBox[{"Solve", "[", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"D", "[", 
+                    RowBox[{"equ", ",", "dom"}], "]"}], "==", "gradient"}], "&&", 
+                  RowBox[{"domLow", "<=", "dom", "<=", "domHigh"}]}], ",", 
+                 "dom", ",", "Reals"}], "]"}]}], ",", 
+              RowBox[{"_", "?", "NumericQ"}]}], "]"}]}], ";", "\n", 
+           RowBox[{"cpY", "=", 
+            RowBox[{"equ", "/.", 
+             RowBox[{"dom", "->", "cpX"}]}]}], ";", "\n", 
+           RowBox[{"(*", 
+            RowBox[{
+             RowBox[{"Output", " ", "cpX", " ", "with", " ", "cpY"}], ",", 
+             " ", 
+             RowBox[{"along", " ", "with", " ", "the", " ", "equation"}]}], 
+            "*)"}], "\n", 
+           RowBox[{
+            RowBox[{"spdFindGrad", "[", 
+             RowBox[{
+             "equ", ",", "gradient", ",", "dom", ",", "domLow", ",", 
+              "domHigh"}], "]"}], "=", 
+            RowBox[{"result", "=", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", "equ", "}"}], ",", 
+               RowBox[{"Table", "[", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"cpX", "[", 
+                    RowBox[{"[", "ii", "]"}], "]"}], ",", 
+                   RowBox[{"cpY", "[", 
+                    RowBox[{"[", "ii", "]"}], "]"}], ",", 
+                   RowBox[{
+                    RowBox[{"D", "[", 
+                    RowBox[{"equ", ",", "dom"}], "]"}], "/.", 
+                    RowBox[{"dom", "->", 
+                    RowBox[{"cpX", "[", 
+                    RowBox[{"[", "ii", "]"}], "]"}]}]}]}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"ii", ",", 
+                   RowBox[{"Length", "[", "cpX", "]"}]}], "}"}]}], "]"}]}], 
+              "}"}]}]}], ";", "\n", 
+           RowBox[{"Return", "[", 
+            RowBox[{"result", ",", "spdFindGrad"}], "]"}]}], "\n", "}"}], ",",
+          "\n", 
+         RowBox[{"(*", 
+          RowBox[{"IMPORTANT", ",", " ", 
+           RowBox[{"must", " ", "save", " ", "definitions"}]}], "*)"}], "\n", 
+         RowBox[{"SaveDefinitions", "\[Rule]", "True"}]}], "]"}]}], "\n", 
+      "}"}]}], ";"}], "\n", "\n", "\n", 
+   RowBox[{"(*", 
+    RowBox[{"Find", " ", "points", " ", "of", " ", "intersection"}], "*)"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"spdPOI", "[", 
+      RowBox[{"equList_", ",", 
+       RowBox[{"dom_", ":", "x"}], ",", 
+       RowBox[{"domLow_", ":", 
+        RowBox[{"-", "10"}]}], ",", 
+       RowBox[{"domHigh_", ":", "10"}]}], "]"}], ":=", 
+     RowBox[{"{", "\n", 
+      RowBox[{"(*", 
+       RowBox[{
+       "Find", " ", "any", " ", "point", " ", "on", " ", "the", " ", 
+        "graph"}], "*)"}], "\n", 
+      RowBox[{"Quiet", "@", 
+       RowBox[{"DynamicModule", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"poiX", ",", "poiY", ",", 
+           RowBox[{"result", "=", 
+            RowBox[{"{", "}"}]}]}], "}"}], ",", 
+         RowBox[{"{", "\n", 
+          RowBox[{"(*", 
+           RowBox[{
+           "Make", " ", "sure", " ", "equList", " ", "is", " ", "longer", " ",
+             "than", " ", "1"}], "*)"}], "\n", 
+          RowBox[{
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"Length", "[", "equList", "]"}], ">", "1"}], ",", "\n", 
+             RowBox[{"(*", 
+              RowBox[{"Calculate", " ", "the", " ", "intersection"}], "*)"}], 
+             "\n", 
+             RowBox[{
+              RowBox[{"spdPOI", "[", 
+               RowBox[{"equList", ",", "dom", ",", "domLow", ",", "domHigh"}],
+                "]"}], "=", 
+              RowBox[{"result", "=", 
+               RowBox[{"DeleteDuplicates", "@", 
+                RowBox[{"Flatten", "[", "\n", 
+                 RowBox[{"(*", 
+                  RowBox[{
+                  "Parallel", " ", "Tables", " ", "caused", " ", "too", " ", 
+                   "much", " ", "trouble"}], "*)"}], "\n", 
+                 RowBox[{
+                  RowBox[{"Table", "[", "\n", 
+                   RowBox[{"(*", 
+                    RowBox[{
+                    RowBox[{"Plz", " ", "stay", " ", "silent"}], ",", " ", 
+                    RowBox[{
+                    "even", " ", "in", " ", "parallel", " ", "processing"}]}],
+                     "*)"}], "\n", "\t", 
+                   RowBox[{
+                    RowBox[{"Table", "[", 
+                    RowBox[{
+                    RowBox[{"{", "\n", "\t", 
+                    RowBox[{
+                    RowBox[{"poiX", "=", 
+                    RowBox[{"dom", "/.", 
+                    RowBox[{"Solve", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"equList", "[", 
+                    RowBox[{"[", "equ1", "]"}], "]"}], "==", 
+                    RowBox[{"equList", "[", 
+                    RowBox[{"[", "equ2", "]"}], "]"}]}], "&&", 
+                    RowBox[{"domLow", "<=", "dom", "<=", "domHigh"}]}], ",", 
+                    "dom", ",", "Reals"}], "]"}]}]}], ";", "\n", "\t", 
+                    RowBox[{"poiY", "=", 
+                    RowBox[{"Table", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"equList", "[", 
+                    RowBox[{"[", "equ1", "]"}], "]"}], "/.", 
+                    RowBox[{"dom", "->", 
+                    RowBox[{"poiX", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}]}]}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"i", ",", 
+                    RowBox[{"Length", "[", "poiX", "]"}]}], "}"}]}], "]"}]}], 
+                    ";", "\n", 
+                    RowBox[{"(*", 
+                    RowBox[{"Include", " ", "equations"}], "*)"}], "\n", "\t", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"equList", "[", 
+                    RowBox[{"[", "equ1", "]"}], "]"}], ",", 
+                    RowBox[{"equList", "[", 
+                    RowBox[{"[", "equ2", "]"}], "]"}]}], "}"}], ",", "\n", 
+                    RowBox[{"(*", 
+                    RowBox[{"Include", " ", "points"}], "*)"}], "\n", "\t", 
+                    RowBox[{"Table", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"poiX", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], ",", 
+                    RowBox[{"poiY", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], ",", "\n", 
+                    RowBox[{"(*", 
+                    RowBox[{"Include", " ", "gradients"}], "*)"}], "\n", "\t", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"D", "[", 
+                    RowBox[{
+                    RowBox[{"equList", "[", 
+                    RowBox[{"[", "equ1", "]"}], "]"}], ",", "dom"}], "]"}], "/.", 
+                    RowBox[{"dom", "->", 
+                    RowBox[{"poiX", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}]}]}], ",", 
+                    RowBox[{
+                    RowBox[{"D", "[", 
+                    RowBox[{
+                    RowBox[{"equList", "[", 
+                    RowBox[{"[", "equ2", "]"}], "]"}], ",", "dom"}], "]"}], "/.", 
+                    RowBox[{"dom", "->", 
+                    RowBox[{"poiX", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}]}]}]}], "}"}]}], "\n", "\t",
+                     "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"i", ",", 
+                    RowBox[{"Length", "[", "poiX", "]"}]}], "}"}]}], "]"}]}], 
+                    "\n", "\t", "}"}]}], "\n", "\t", "}"}], ",", "\n", "\t", 
+                    RowBox[{"{", 
+                    RowBox[{"equ2", ",", 
+                    RowBox[{"equ1", "+", "1"}], ",", 
+                    RowBox[{"Length", "[", "equList", "]"}]}], "}"}]}], "]"}],
+                     ",", "\n", 
+                    RowBox[{"{", 
+                    RowBox[{"equ1", ",", 
+                    RowBox[{"Length", "[", "equList", "]"}]}], "}"}]}], "]"}],
+                   ",", "\n", "2"}], "]"}]}]}]}]}], "\n", 
+            RowBox[{"(*", 
+             RowBox[{"End", " ", "of", " ", "if", " ", "statement"}], "*)"}], 
+            "\n", "]"}], ";", "\n", 
+           RowBox[{"(*", 
+            RowBox[{
+             RowBox[{
+             "If", " ", "equList", " ", "has", " ", "a", " ", "length", " ", 
+              "of", " ", "1", " ", "or", " ", "less"}], ",", " ", 
+             RowBox[{"return", " ", "nothing"}]}], "*)"}], "\n", 
+           RowBox[{"Return", "[", 
+            RowBox[{"result", ",", "spdPOI"}], "]"}]}], "\n", "}"}], ",", 
+         "\n", 
+         RowBox[{"(*", 
+          RowBox[{"IMPORTANT", ",", " ", 
+           RowBox[{"must", " ", "save", " ", "definitions"}]}], "*)"}], "\n", 
+         RowBox[{"SaveDefinitions", "\[Rule]", "True"}]}], "]"}]}], "\n", 
+      "}"}]}], ";"}], "\n", "\n", "\n", 
+   RowBox[{"(*", 
+    RowBox[{"Find", " ", "vertical", " ", "asymptotes"}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"spdAsyV", "[", 
+      RowBox[{"equList_", ",", 
+       RowBox[{"dom_", ":", "x"}], ",", 
+       RowBox[{"domLow_", ":", 
+        RowBox[{"-", "10"}]}], ",", 
+       RowBox[{"domHigh_", ":", "10"}]}], "]"}], ":=", 
+     RowBox[{"{", "\n", 
+      RowBox[{"Quiet", "@", 
+       RowBox[{"DynamicModule", "[", 
+        RowBox[{
+         RowBox[{"{", "\n", 
+          RowBox[{
+           RowBox[{"rules", "=", 
+            RowBox[{"Dispatch", "[", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"Inequality", "->", "Sequence"}], ",", 
+               RowBox[{"Or", "->", "Sequence"}], ",", 
+               RowBox[{"Less", "->", "Sequence"}], ",", 
+               RowBox[{"LessEqual", "->", "Sequence"}], ",", 
+               RowBox[{"Greater", "->", "Sequence"}], ",", 
+               RowBox[{"GreaterEqual", "->", "Sequence"}], ",", 
+               RowBox[{
+                RowBox[{"domLow", "-", "1"}], "->", "Sequence"}], ",", 
+               RowBox[{
+                RowBox[{"domHigh", "+", "1"}], "->", "Sequence"}], ",", 
+               RowBox[{"True", "->", "Sequence"}]}], "}"}], "]"}]}], ",", 
+           "\n", "lines", ",", "\n", "result"}], "\n", "}"}], ",", 
+         RowBox[{"{", "\n", 
+          RowBox[{"(*", 
+           RowBox[{
+            RowBox[{
+            "Remove", " ", "all", " ", "the", " ", "wrong", " ", 
+             "asymptotes"}], ",", " ", 
+            RowBox[{"non", "-", "asymptotes"}], ",", " ", "duplicates"}], 
+           "*)"}], "\n", 
+          RowBox[{
+           RowBox[{"lines", "=", 
+            RowBox[{"Cases", "[", 
+             RowBox[{
+              RowBox[{"DeleteDuplicates", "@", 
+               RowBox[{"Flatten", "@", 
+                RowBox[{"{", "\n", 
+                 RowBox[{"(*", 
+                  RowBox[{
+                   RowBox[{"Remove", " ", "non"}], "-", 
+                   RowBox[{"numbers", " ", "quickly", " ", "pt1"}]}], "*)"}], 
+                 "\n", 
+                 RowBox[{"Complement", "[", 
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{"Table", "[", 
+                    RowBox[{
+                    RowBox[{"{", "\n", 
+                    RowBox[{"(*", 
+                    RowBox[{
+                    "Method", " ", "1", " ", "of", " ", "finding", " ", 
+                    "vertical", " ", "asymptotes"}], "*)"}], "\n", 
+                    RowBox[{
+                    RowBox[{"FunctionDomain", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"equList", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], ",", 
+                    RowBox[{
+                    RowBox[{"domLow", "-", "1"}], "<=", "dom", "<=", 
+                    RowBox[{"domHigh", "+", "1"}]}]}], "}"}], ",", "dom"}], 
+                    "]"}], ",", "\n", 
+                    RowBox[{"(*", 
+                    RowBox[{
+                    "Method", " ", "2", " ", "of", " ", "finding", " ", 
+                    "vertical", " ", "asymptotes"}], "*)"}], "\n", 
+                    RowBox[{"(*", 
+                    RowBox[{
+                    RowBox[{"Use", " ", "flatten", " ", "with", " ", 
+                    RowBox[{"{", "}"}]}], ",", " ", 
+                    RowBox[{
+                    "as", " ", "that", " ", "seems", " ", "like", " ", "the", 
+                    " ", "most", " ", "reliable", " ", "way", " ", "to", " ", 
+                    "make", " ", "a", " ", "flat", " ", "list"}]}], "*)"}], 
+                    "\n", 
+                    RowBox[{"Flatten", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"dom", "/.", 
+                    RowBox[{"Solve", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"1", "/", 
+                    RowBox[{"equList", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}]}], "==", "0"}], "&&", 
+                    RowBox[{"domLow", "<=", "dom", "<=", "domHigh"}]}], 
+                    "]"}]}], "}"}], "]"}]}], "\n", 
+                    RowBox[{"(*", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Remove", " ", "non"}], "-", "numbers"}], ",", 
+                    " ", 
+                    RowBox[{"quickly", " ", "pt2"}]}], "*)"}], "\n", "}"}], 
+                    ",", 
+                    RowBox[{"{", 
+                    RowBox[{"i", ",", 
+                    RowBox[{"Length", "[", "equList", "]"}]}], "}"}]}], "]"}],
+                     "/.", "rules"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{"Sequence", ",", "dom"}], "}"}]}], "]"}], "\n", 
+                 "}"}]}]}], ",", 
+              RowBox[{"_", "?", "NumericQ"}]}], "]"}]}], ";", "\n", 
+           RowBox[{"(*", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"Complement", " ", "deletes", " ", "non"}], "-", 
+              RowBox[{"numbers", " ", "fast"}]}], ",", " ", 
+             RowBox[{"but", " ", "its", " ", "less", " ", 
+              RowBox[{"accurate", ".", "\n", "Cases"}], " ", "is", " ", 
+              "slower"}], ",", " ", 
+             RowBox[{"but", " ", "deletes", " ", 
+              RowBox[{"everything", "."}]}]}], "*)"}], "\n", "\n", 
+           RowBox[{"(*", 
+            RowBox[{"Convert", " ", "into", " ", "useable", " ", "points"}], 
+            "*)"}], "\n", 
+           RowBox[{
+            RowBox[{"spdAsyV", "[", 
+             RowBox[{"equList", ",", "dom", ",", "domLow", ",", "domHigh"}], 
+             "]"}], "=", 
+            RowBox[{"result", "=", "\n", 
+             RowBox[{"Table", "[", "\n", 
+              RowBox[{
+               RowBox[{"{", "\n", 
+                RowBox[{"(*", "TooltipString", "*)"}], "\n", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"\"\<Vertical Asymptote\>\"", ",", "\n", 
+                   RowBox[{"{", 
+                    RowBox[{"\"\<Complete form:\>\"", ",", 
+                    RowBox[{"lines", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}]}], "}"}], ",", "\n", 
+                   RowBox[{"(*", 
+                    RowBox[{
+                    RowBox[{
+                    "Plot", " ", "decimal", " ", "of", " ", "equation", " ", 
+                    "of", " ", "point"}], ",", " ", 
+                    RowBox[{
+                    "rounded", " ", "to", " ", "5", " ", "decimal", " ", 
+                    "places"}]}], "*)"}], "\n", 
+                   RowBox[{"{", 
+                    RowBox[{"\"\<Rounded form:\>\"", ",", 
+                    RowBox[{"N", "[", 
+                    RowBox[{
+                    RowBox[{"lines", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], ",", 
+                    "spdRoundPrecision"}], "]"}]}], "}"}]}], "}"}], ",", "\n",
+                  "\n", 
+                 RowBox[{"(*", "Points", "*)"}], "\n", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"lines", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], ",", "0"}], "}"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"lines", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], ",", "1"}], "}"}]}], 
+                  "}"}]}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"i", ",", 
+                 RowBox[{"Length", "[", "lines", "]"}]}], "\n", "}"}]}], 
+              "]"}]}]}], ";", "\n", "\n", 
+           RowBox[{"Return", "[", 
+            RowBox[{"result", ",", "spdAsyV"}], "]"}]}], "\n", "}"}], ",", 
+         "\n", 
+         RowBox[{"(*", 
+          RowBox[{"IMPORTANT", ",", " ", 
+           RowBox[{"must", " ", "save", " ", "definitions"}]}], "*)"}], "\n", 
+         RowBox[{"SaveDefinitions", "\[Rule]", "True"}]}], "]"}]}], "\n", 
+      "}"}]}], ";"}], "\n", "\n", "\n", 
+   RowBox[{"(*", 
+    RowBox[{"Find", " ", "horizontal", " ", "asymptotes"}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"spdAsyH", "[", 
+      RowBox[{"equList_", ",", 
+       RowBox[{"dom_", ":", "x"}], ",", 
+       RowBox[{"domLow_", ":", 
+        RowBox[{"-", "10"}]}], ",", 
+       RowBox[{"domHigh_", ":", "10"}]}], "]"}], ":=", 
+     RowBox[{"{", "\n", 
+      RowBox[{"Quiet", "@", 
+       RowBox[{"DynamicModule", "[", 
+        RowBox[{
+         RowBox[{"{", "\n", 
+          RowBox[{
+           RowBox[{"rules", "=", 
+            RowBox[{"Dispatch", "[", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"Inequality", "->", "Sequence"}], ",", 
+               RowBox[{"Or", "->", "Sequence"}], ",", 
+               RowBox[{"Less", "->", "Sequence"}], ",", 
+               RowBox[{"LessEqual", "->", "Sequence"}], ",", 
+               RowBox[{"Greater", "->", "Sequence"}], ",", 
+               RowBox[{"GreaterEqual", "->", "Sequence"}], ",", 
+               RowBox[{
+                RowBox[{"domLow", "-", "1"}], "->", "Sequence"}], ",", 
+               RowBox[{
+                RowBox[{"domHigh", "+", "1"}], "->", "Sequence"}], ",", 
+               RowBox[{"True", "->", "Sequence"}]}], "}"}], "]"}]}], ",", 
+           "\n", "lines", ",", "\n", "result"}], "\n", "}"}], ",", 
+         RowBox[{"{", "\n", 
+          RowBox[{"(*", 
+           RowBox[{
+            RowBox[{
+            "Remove", " ", "all", " ", "the", " ", "wrong", " ", 
+             "asymptotes"}], ",", " ", 
+            RowBox[{"non", "-", "asymptotes"}], ",", " ", "duplicates"}], 
+           "*)"}], "\n", 
+          RowBox[{
+           RowBox[{"lines", "=", 
+            RowBox[{"DeleteDuplicates", "@", 
+             RowBox[{"Flatten", "@", 
+              RowBox[{"{", "\n", 
+               RowBox[{"(*", 
+                RowBox[{
+                 RowBox[{"Remove", " ", "non"}], "-", 
+                 RowBox[{"numbers", " ", "quickly", " ", "pt1"}]}], "*)"}], 
+               "\n", 
+               RowBox[{"Complement", "[", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"Table", "[", "\n", 
+                   RowBox[{"(*", 
+                    RowBox[{
+                    RowBox[{
+                    "Just", " ", "find", " ", "the", " ", "horizontal", " ", 
+                    "asymptotes"}], ",", " ", "quickly"}], "*)"}], "\n", 
+                   RowBox[{
+                    RowBox[{"FunctionRange", "[", 
+                    RowBox[{
+                    RowBox[{"equList", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], ",", "dom", ",", "y"}], 
+                    "]"}], ",", "\n", 
+                    RowBox[{"(*", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Remove", " ", "non"}], "-", "numbers"}], ",", 
+                    " ", 
+                    RowBox[{"quickly", " ", "pt2"}]}], "*)"}], "\n", 
+                    RowBox[{"{", 
+                    RowBox[{"i", ",", 
+                    RowBox[{"Length", "[", "equList", "]"}]}], "}"}]}], "]"}],
+                   "/.", "rules"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"Sequence", ",", "dom", ",", "y"}], "}"}]}], "]"}], 
+               "\n", "}"}]}]}]}], ";", "\n", "\n", 
+           RowBox[{"(*", 
+            RowBox[{"Convert", " ", "into", " ", "useable", " ", "points"}], 
+            "*)"}], "\n", 
+           RowBox[{
+            RowBox[{"spdAsyH", "[", 
+             RowBox[{"equList", ",", "dom", ",", "domLow", ",", "domHigh"}], 
+             "]"}], "=", 
+            RowBox[{"result", "=", 
+             RowBox[{"Table", "[", "\n", 
+              RowBox[{
+               RowBox[{"{", "\n", 
+                RowBox[{"(*", "TooltipString", "*)"}], "\n", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"\"\<Horizontal Asymptote\>\"", ",", "\n", 
+                   RowBox[{"{", 
+                    RowBox[{"\"\<Complete form:\>\"", ",", 
+                    RowBox[{"lines", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}]}], "}"}], ",", "\n", 
+                   RowBox[{"(*", 
+                    RowBox[{
+                    RowBox[{
+                    "Plot", " ", "decimal", " ", "of", " ", "equation", " ", 
+                    "of", " ", "point"}], ",", " ", 
+                    RowBox[{
+                    "rounded", " ", "to", " ", "5", " ", "decimal", " ", 
+                    "places"}]}], "*)"}], "\n", 
+                   RowBox[{"{", 
+                    RowBox[{"\"\<Rounded form:\>\"", ",", 
+                    RowBox[{"N", "[", 
+                    RowBox[{
+                    RowBox[{"lines", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], ",", 
+                    "spdRoundPrecision"}], "]"}]}], "}"}]}], "}"}], ",", "\n",
+                  "\n", 
+                 RowBox[{"(*", "Points", "*)"}], "\n", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{"0", ",", 
+                    RowBox[{"lines", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}]}], "}"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{"1", ",", 
+                    RowBox[{"lines", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}]}], "}"}]}], "}"}]}], "}"}],
+                ",", 
+               RowBox[{"{", 
+                RowBox[{"i", ",", 
+                 RowBox[{"Length", "[", "lines", "]"}]}], "\n", "}"}]}], 
+              "]"}]}]}], ";", "\n", "\n", 
+           RowBox[{"Return", "[", 
+            RowBox[{"result", ",", "spdAsyH"}], "]"}]}], "\n", "}"}], ",", 
+         "\n", 
+         RowBox[{"(*", 
+          RowBox[{"IMPORTANT", ",", " ", 
+           RowBox[{"must", " ", "save", " ", "definitions"}]}], "*)"}], "\n", 
+         RowBox[{"SaveDefinitions", "\[Rule]", "True"}]}], "]"}]}], "\n", 
+      "}"}]}], ";"}], "\n", "\n", "\n", 
+   RowBox[{"(*", 
+    RowBox[{"Find", " ", "slant", " ", "asymptotes"}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"spdAsyS", "[", 
+      RowBox[{"equList_", ",", 
+       RowBox[{"dom_", ":", "x"}]}], "]"}], ":=", 
+     RowBox[{"{", "\n", 
+      RowBox[{"Quiet", "@", 
+       RowBox[{"DynamicModule", "[", 
+        RowBox[{
+         RowBox[{"{", "\n", 
+          RowBox[{"lines", ",", "\n", "asy", ",", "\n", "result"}], "\n", 
+          "}"}], ",", 
+         RowBox[{"{", "\n", 
+          RowBox[{"(*", 
+           RowBox[{
+            RowBox[{
+            "Remove", " ", "all", " ", "the", " ", "wrong", " ", 
+             "asymptotes"}], ",", " ", 
+            RowBox[{"non", "-", "asymptotes"}], ",", " ", "duplicates"}], 
+           "*)"}], "\n", 
+          RowBox[{
+           RowBox[{"lines", "=", 
+            RowBox[{"DeleteDuplicates", "@", 
+             RowBox[{"Flatten", "@", 
+              RowBox[{"{", "\n", 
+               RowBox[{"(*", 
+                RowBox[{
+                 RowBox[{"Remove", " ", "non"}], "-", 
+                 RowBox[{"numbers", " ", "quickly", " ", "pt1"}]}], "*)"}], 
+               "\n", 
+               RowBox[{"Complement", "[", 
+                RowBox[{"Table", "[", 
+                 RowBox[{
+                  RowBox[{"{", "\n", 
+                   RowBox[{"(*", 
+                    RowBox[{
+                    RowBox[{
+                    "Just", " ", "find", " ", "the", " ", "slant", " ", 
+                    "asymptotes"}], ",", " ", "quickly"}], "*)"}], "\n", 
+                   RowBox[{
+                    RowBox[{"asy", "=", 
+                    RowBox[{"Quiet", "@", 
+                    RowBox[{"PolynomialQuotient", "[", 
+                    RowBox[{
+                    RowBox[{"Numerator", "[", 
+                    RowBox[{"equList", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], "]"}], ",", 
+                    RowBox[{"Denominator", "[", 
+                    RowBox[{"equList", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], "]"}], ",", "dom"}], 
+                    "]"}]}]}], ";", "\n", 
+                    RowBox[{"(*", 
+                    RowBox[{
+                    RowBox[{
+                    "Check", " ", "if", " ", "asymptote", " ", "is", " ", 
+                    "linear"}], ",", " ", 
+                    RowBox[{"else", " ", "return", " ", "nothing"}]}], "*)"}],
+                     "\n", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Exponent", "[", 
+                    RowBox[{"asy", ",", "dom"}], "]"}], "<", "2"}], ",", 
+                    "asy", ",", 
+                    RowBox[{"{", "}"}]}], "]"}]}], "\n", "}"}], ",", "\n", 
+                  RowBox[{"(*", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"Remove", " ", "non"}], "-", "numbers"}], ",", 
+                    " ", 
+                    RowBox[{"quickly", " ", "pt2"}]}], "*)"}], "\n", 
+                  RowBox[{"{", 
+                   RowBox[{"i", ",", 
+                    RowBox[{"Length", "[", "equList", "]"}]}], "}"}]}], "]"}],
+                 "]"}], "\n", "}"}]}]}]}], ";", "\n", "\n", 
+           RowBox[{"(*", 
+            RowBox[{"Convert", " ", "into", " ", "useable", " ", "points"}], 
+            "*)"}], "\n", 
+           RowBox[{
+            RowBox[{"spdAsyS", "[", 
+             RowBox[{"equList", ",", "dom"}], "]"}], "=", 
+            RowBox[{"result", "=", 
+             RowBox[{"Table", "[", "\n", 
+              RowBox[{
+               RowBox[{"{", "\n", 
+                RowBox[{"(*", "TooltipString", "*)"}], "\n", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"\"\<Slant Asymptote\>\"", ",", "\n", 
+                   RowBox[{"{", 
+                    RowBox[{"\"\<Complete form:\>\"", ",", 
+                    RowBox[{"lines", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}]}], "}"}]}], "\n", "}"}], 
+                 ",", "\n", "\n", 
+                 RowBox[{"(*", "Points", "*)"}], "\n", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{"0", ",", 
+                    RowBox[{
+                    RowBox[{"lines", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], "/.", 
+                    RowBox[{"dom", "->", "0"}]}]}], "}"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{"1", ",", 
+                    RowBox[{
+                    RowBox[{"lines", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], "/.", 
+                    RowBox[{"dom", "->", "1"}]}]}], "}"}]}], "}"}]}], "}"}], 
+               ",", 
+               RowBox[{"{", 
+                RowBox[{"i", ",", 
+                 RowBox[{"Length", "[", "lines", "]"}]}], "\n", "}"}]}], 
+              "]"}]}]}], ";", "\n", "\n", 
+           RowBox[{"Return", "[", 
+            RowBox[{"result", ",", "spdAsyS"}], "]"}]}], "\n", "}"}], ",", 
+         "\n", 
+         RowBox[{"(*", 
+          RowBox[{"IMPORTANT", ",", " ", 
+           RowBox[{"must", " ", "save", " ", "definitions"}]}], "*)"}], "\n", 
+         RowBox[{"SaveDefinitions", "\[Rule]", "True"}]}], "]"}]}], "\n", 
+      "}"}]}], ";"}], "\n", "\n", "\n", 
+   RowBox[{"(*", 
+    RowBox[{"Find", " ", "tangent"}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"spdFindTangent", "[", 
+      RowBox[{"equ_", ",", "xCoord_", ",", 
+       RowBox[{"dom_", ":", "x"}], ",", 
+       RowBox[{"domLow_", ":", 
+        RowBox[{"-", "10"}]}], ",", 
+       RowBox[{"domHigh_", ":", "10"}]}], "]"}], ":=", 
+     RowBox[{"{", "\n", 
+      RowBox[{"Quiet", "@", 
+       RowBox[{"DynamicModule", "[", 
+        RowBox[{
+         RowBox[{"{", "\n", 
+          RowBox[{
+          "grad", ",", "\n", "yCoord", ",", "\n", "tangent", ",", "\n", 
+           "result"}], "\n", "}"}], ",", 
+         RowBox[{"{", "\n", 
+          RowBox[{"(*", 
+           RowBox[{"Find", " ", "gradient"}], "*)"}], "\n", 
+          RowBox[{
+           RowBox[{"grad", "=", 
+            RowBox[{
+             RowBox[{"D", "[", 
+              RowBox[{"equ", ",", "dom"}], "]"}], "/.", 
+             RowBox[{"dom", "->", "xCoord"}]}]}], ";", "\n", 
+           RowBox[{"(*", 
+            RowBox[{"Find", " ", "yCoord"}], "*)"}], "\n", 
+           RowBox[{"yCoord", "=", 
+            RowBox[{"equ", "/.", 
+             RowBox[{"dom", "->", "xCoord"}]}]}], ";", "\n", 
+           RowBox[{"(*", 
+            RowBox[{"Find", " ", "tangent"}], "*)"}], "\n", 
+           RowBox[{"tangent", "=", 
+            RowBox[{"Simplify", "[", 
+             RowBox[{
+              RowBox[{"grad", 
+               RowBox[{"(", 
+                RowBox[{"dom", "-", "xCoord"}], ")"}]}], "+", "yCoord"}], 
+             "]"}]}], ";", "\n", "\n", 
+           RowBox[{
+            RowBox[{"spdFindTangent", "[", 
+             RowBox[{
+             "equ", ",", "xCoord", ",", "dom", ",", "domLow", ",", 
+              "domHigh"}], "]"}], "=", 
+            RowBox[{"result", "=", 
+             RowBox[{"{", "\n", 
+              RowBox[{"(*", 
+               RowBox[{"Convert", " ", "into", " ", "graphics"}], "*)"}], 
+              "\n", 
+              RowBox[{"(*", 
+               RowBox[{
+               "Create", " ", "a", " ", "string", " ", "of", " ", "data", " ",
+                 "to", " ", "display"}], "*)"}], "\n", 
+              RowBox[{"(*", "TooltipString", "*)"}], "\n", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"\"\<Find Tangent\>\"", ",", "\n", 
+                 RowBox[{"{", 
+                  RowBox[{"\"\<Equation:\>\"", ",", "equ"}], "}"}], ",", "\n", 
+                 RowBox[{"{", 
+                  RowBox[{"\"\<Tangent:\>\"", ",", "tangent"}], "}"}], ",", 
+                 "\n", 
+                 RowBox[{"{", 
+                  RowBox[{"\"\<Gradient:\>\"", ",", "grad"}], "}"}]}], "\n", 
+                "}"}], ",", "\n", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", 
+                   RowBox[{"tangent", "/.", 
+                    RowBox[{"dom", "->", "0"}]}]}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"xCoord", ",", "yCoord"}], "}"}]}], "}"}]}], "\n", 
+              "}"}]}]}], ";", "\n", "\n", 
+           RowBox[{"Return", "[", 
+            RowBox[{"result", ",", "spdFindTangent"}], "]"}]}], "\n", "}"}], 
+         ",", "\n", 
+         RowBox[{"(*", 
+          RowBox[{"IMPORTANT", ",", " ", 
+           RowBox[{"must", " ", "save", " ", "definitions"}]}], "*)"}], "\n", 
+         RowBox[{"SaveDefinitions", "\[Rule]", "True"}]}], "]"}]}], "\n", 
+      "}"}]}], ";"}], "\n", "\n", 
+   RowBox[{"(*", 
+    RowBox[{"Find", " ", "normal"}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"spdFindNormal", "[", 
+      RowBox[{"equ_", ",", "xCoord_", ",", 
+       RowBox[{"dom_", ":", "x"}], ",", 
+       RowBox[{"domLow_", ":", 
+        RowBox[{"-", "10"}]}], ",", 
+       RowBox[{"domHigh_", ":", "10"}]}], "]"}], ":=", 
+     RowBox[{"{", "\n", 
+      RowBox[{"Quiet", "@", 
+       RowBox[{"DynamicModule", "[", 
+        RowBox[{
+         RowBox[{"{", "\n", 
+          RowBox[{
+          "grad", ",", "\n", "yCoord", ",", "\n", "normal", ",", "\n", 
+           "result"}], "\n", "}"}], ",", 
+         RowBox[{"{", "\n", 
+          RowBox[{"(*", 
+           RowBox[{"Find", " ", "gradient"}], "*)"}], "\n", 
+          RowBox[{
+           RowBox[{"grad", "=", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"-", "1"}], "/", 
+              RowBox[{"D", "[", 
+               RowBox[{"equ", ",", "dom"}], "]"}]}], "/.", 
+             RowBox[{"dom", "->", "xCoord"}]}]}], ";", "\n", 
+           RowBox[{"(*", 
+            RowBox[{"Find", " ", "yCoord"}], "*)"}], "\n", 
+           RowBox[{"yCoord", "=", 
+            RowBox[{"equ", "/.", 
+             RowBox[{"dom", "->", "xCoord"}]}]}], ";", "\n", 
+           RowBox[{"(*", 
+            RowBox[{"Find", " ", "normal"}], "*)"}], "\n", 
+           RowBox[{"normal", "=", 
+            RowBox[{"Simplify", "[", 
+             RowBox[{
+              RowBox[{"grad", 
+               RowBox[{"(", 
+                RowBox[{"dom", "-", "xCoord"}], ")"}]}], "+", "yCoord"}], 
+             "]"}]}], ";", "\n", "\n", 
+           RowBox[{
+            RowBox[{"spdFindNormal", "[", 
+             RowBox[{
+             "equ", ",", "xCoord", ",", "dom", ",", "domLow", ",", 
+              "domHigh"}], "]"}], "=", 
+            RowBox[{"result", "=", 
+             RowBox[{"{", "\n", 
+              RowBox[{"(*", 
+               RowBox[{"Convert", " ", "into", " ", "graphics"}], "*)"}], 
+              "\n", 
+              RowBox[{"(*", 
+               RowBox[{
+               "Create", " ", "a", " ", "string", " ", "of", " ", "data", " ",
+                 "to", " ", "display"}], "*)"}], "\n", 
+              RowBox[{"(*", "TooltipString", "*)"}], "\n", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"\"\<Find Normal\>\"", ",", "\n", 
+                 RowBox[{"{", 
+                  RowBox[{"\"\<Equation:\>\"", ",", "equ"}], "}"}], ",", "\n", 
+                 RowBox[{"{", 
+                  RowBox[{"\"\<Normal:\>\"", ",", "normal"}], "}"}], ",", 
+                 "\n", 
+                 RowBox[{"{", 
+                  RowBox[{"\"\<Gradient:\>\"", ",", "grad"}], "}"}]}], "\n", 
+                "}"}], ",", "\n", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", 
+                   RowBox[{"normal", "/.", 
+                    RowBox[{"dom", "->", "0"}]}]}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"xCoord", ",", "yCoord"}], "}"}]}], "}"}]}], "\n", 
+              "}"}]}]}], ";", "\n", "\n", 
+           RowBox[{"Return", "[", 
+            RowBox[{"result", ",", "spdFindNormal"}], "]"}]}], "\n", "}"}], 
+         ",", "\n", 
+         RowBox[{"(*", 
+          RowBox[{"IMPORTANT", ",", " ", 
+           RowBox[{"must", " ", "save", " ", "definitions"}]}], "*)"}], "\n", 
+         RowBox[{"SaveDefinitions", "\[Rule]", "True"}]}], "]"}]}], "\n", 
+      "}"}]}], ";"}], "\n", "\n", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", 
+         RowBox[{"--", 
+          RowBox[{"--", 
+           RowBox[{"--", 
+            RowBox[{"--", 
+             RowBox[{"--", 
+              RowBox[{"--", 
+               RowBox[{"--", 
+                RowBox[{"--", 
+                 RowBox[{"-", 
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"Objects", "--"}], "--"}], "--"}], 
+                   "--"}]}]}]}]}]}]}]}]}]}]}]}]}]}], 
+     RowBox[{"--", 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", 
+         RowBox[{"--", 
+          RowBox[{"--", 
+           RowBox[{"--", 
+            RowBox[{"--", 
+             RowBox[{"-", "\n", "Compute"}]}]}]}]}]}]}]}]}], " ", "points", 
+     " ", "with", " ", "tooltip"}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"spdPointsG", "[", 
+      RowBox[{"points_", ",", "label_", ",", 
+       RowBox[{"colour_", ":", "spdColourPoint1"}]}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"spdPointsG", "[", 
+       RowBox[{"points", ",", "label", ",", "colour"}], "]"}], "=", "\n", 
+      RowBox[{"Graphics", "[", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"Table", "[", "\n", "\n", 
+          RowBox[{"(*", 
+           RowBox[{
+           "Create", " ", "a", " ", "string", " ", "of", " ", "data", " ", 
+            "to", " ", "display"}], "*)"}], "\n", 
+          RowBox[{
+           RowBox[{"DynamicModule", "[", 
+            RowBox[{
+             RowBox[{"{", "\n", 
+              RowBox[{"tooltipString", "=", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{"label", ",", "\n", 
+                    RowBox[{"(*", 
+                    RowBox[{
+                    RowBox[{
+                    "I", " ", "hate", " ", "all", " ", "of", " ", "these", 
+                    " ", "brackets", " ", "with", " ", "all", " ", "my", " ", 
+                    "heart"}], ",", "\n", 
+                    RowBox[{
+                    "and", " ", "I", " ", "will", " ", "never", " ", "be", 
+                    " ", "able", " ", "to", " ", "debug", " ", "this", " ", 
+                    "in", " ", "the", " ", "future"}]}], "*)"}], "\n", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<Equation:\>\"", ",", 
+                    RowBox[{
+                    RowBox[{"points", "[", 
+                    RowBox[{"[", "point", "]"}], "]"}], "[", 
+                    RowBox[{"[", "1", "]"}], "]"}]}], "}"}], ",", "\n", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<Complete form:\>\"", ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"\"\<X:\>\"", ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"points", "[", 
+                    RowBox[{"[", "point", "]"}], "]"}], "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], "[", 
+                    RowBox[{"[", "point2", "]"}], "]"}], "[", 
+                    RowBox[{"[", "1", "]"}], "]"}]}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<Y:\>\"", ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"points", "[", 
+                    RowBox[{"[", "point", "]"}], "]"}], "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], "[", 
+                    RowBox[{"[", "point2", "]"}], "]"}], "[", 
+                    RowBox[{"[", "2", "]"}], "]"}]}], "}"}]}], "}"}]}], "}"}],
+                     ",", "\n", 
+                    RowBox[{"(*", 
+                    RowBox[{
+                    RowBox[{
+                    "Plot", " ", "decimal", " ", "of", " ", "equation", " ", 
+                    "of", " ", "point"}], ",", " ", 
+                    RowBox[{
+                    "rounded", " ", "to", " ", "5", " ", "decimal", " ", 
+                    "places"}]}], "*)"}], "\n", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<Rounded form:\>\"", ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"\"\<X:\>\"", ",", 
+                    RowBox[{"N", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"points", "[", 
+                    RowBox[{"[", "point", "]"}], "]"}], "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], "[", 
+                    RowBox[{"[", "point2", "]"}], "]"}], "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], ",", 
+                    "spdRoundPrecision"}], "]"}]}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<Y:\>\"", ",", 
+                    RowBox[{"N", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"points", "[", 
+                    RowBox[{"[", "point", "]"}], "]"}], "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], "[", 
+                    RowBox[{"[", "point2", "]"}], "]"}], "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], ",", 
+                    "spdRoundPrecision"}], "]"}]}], "}"}]}], "}"}]}], "}"}], 
+                    ",", "\n", 
+                    RowBox[{"(*", 
+                    RowBox[{"Simple", " ", "is", " ", "better"}], "*)"}], 
+                    "\n", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<Gradient:\>\"", ",", 
+                    RowBox[{"Simplify", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"points", "[", 
+                    RowBox[{"[", "point", "]"}], "]"}], "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], "[", 
+                    RowBox[{"[", "point2", "]"}], "]"}], "[", 
+                    RowBox[{"[", "3", "]"}], "]"}], "]"}]}], "}"}]}], "\n", 
+                    "}"}], "//", "TableForm"}], ",", 
+                  RowBox[{"FontFamily", "->", "spdFont"}]}], "]"}], "//", 
+                "spdForm"}]}], "\n", "}"}], ",", 
+             RowBox[{"{", "\n", "\n", 
+              RowBox[{"(*", 
+               RowBox[{
+               "Event", " ", "handler", " ", "can", " ", "handle", " ", 
+                "clicks"}], "*)"}], "\n", 
+              RowBox[{"EventHandler", "[", "\n", 
+               RowBox[{"(*", 
+                RowBox[{"Convert", " ", "into", " ", "tooltip", " ", "form"}],
+                 "*)"}], "\n", 
+               RowBox[{
+                RowBox[{"Tooltip", "[", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{
+                    RowBox[{"PointSize", "[", "Medium", "]"}], ",", "colour", 
+                    ",", 
+                    RowBox[{"Point", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"points", "[", 
+                    RowBox[{"[", "point", "]"}], "]"}], "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], "[", 
+                    RowBox[{"[", "point2", "]"}], "]"}], "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"points", "[", 
+                    RowBox[{"[", "point", "]"}], "]"}], "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], "[", 
+                    RowBox[{"[", "point2", "]"}], "]"}], "[", 
+                    RowBox[{"[", "2", "]"}], "]"}]}], "}"}], "]"}]}], "}"}], 
+                  ",", "\n", 
+                  RowBox[{"(*", 
+                   RowBox[{
+                   "Give", " ", "coordinate", " ", "when", " ", "you", " ", 
+                    "hover", " ", "over", " ", "location"}], "*)"}], "\n", 
+                  "tooltipString"}], "\n", "]"}], ",", "\n", 
+                RowBox[{"(*", 
+                 RowBox[{
+                  RowBox[{
+                  "If", " ", "a", " ", "click", " ", "is", " ", "detected", 
+                   " ", "on", " ", "point"}], ",", " ", 
+                  RowBox[{
+                  "print", " ", "whatever", " ", "is", " ", "in", " ", 
+                   "tooltip"}]}], "*)"}], "\n", 
+                RowBox[{"{", 
+                 RowBox[{"\"\<MouseClicked\>\"", ":>", 
+                  RowBox[{"Print", "@", "tooltipString"}]}], "}"}]}], "]"}], 
+              "\n", "}"}], ",", "\n", 
+             RowBox[{"(*", 
+              RowBox[{"IMPORTANT", ",", " ", 
+               RowBox[{"must", " ", "save", " ", "definitions"}]}], "*)"}], 
+             "\n", 
+             RowBox[{"SaveDefinitions", "\[Rule]", "True"}]}], "]"}], ",", 
+           "\n", "\n", 
+           RowBox[{"(*", 
+            RowBox[{"Iterate", " ", "over", " ", "every", " ", "point"}], 
+            "*)"}], "\n", 
+           RowBox[{"{", 
+            RowBox[{"point2", ",", 
+             RowBox[{"Length", "[", 
+              RowBox[{
+               RowBox[{"points", "[", 
+                RowBox[{"[", "point", "]"}], "]"}], "[", 
+               RowBox[{"[", "2", "]"}], "]"}], "]"}]}], "}"}]}], "]"}], ",", 
+         "\n", 
+         RowBox[{"(*", 
+          RowBox[{"Iterate", " ", "over", " ", "every", " ", "equation"}], 
+          "*)"}], "\n", 
+         RowBox[{"{", 
+          RowBox[{"point", ",", 
+           RowBox[{"Length", "[", "points", "]"}]}], "}"}]}], "]"}], 
+       "]"}]}]}], ";"}], "\n", "\n", "\n", 
+   RowBox[{"(*", 
+    RowBox[{"Compute", " ", "lines", " ", "with", " ", "tooltip"}], "*)"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"spdLinesG", "[", 
+      RowBox[{"points_", ",", 
+       RowBox[{"colour_", ":", "spdColourPoint1"}]}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"spdLinesG", "[", 
+       RowBox[{"points", ",", "colour"}], "]"}], "=", "\n", 
+      RowBox[{"Graphics", "[", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"Table", "[", "\n", "\n", 
+          RowBox[{"(*", 
+           RowBox[{
+           "Create", " ", "a", " ", "string", " ", "of", " ", "data", " ", 
+            "to", " ", "display"}], "*)"}], "\n", 
+          RowBox[{
+           RowBox[{"DynamicModule", "[", 
+            RowBox[{
+             RowBox[{"{", "\n", 
+              RowBox[{"tooltipString", "=", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{"points", "[", 
+                    RowBox[{"[", "point", "]"}], "]"}], "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], "//", "TableForm"}], ",", 
+                  RowBox[{"FontFamily", "->", "spdFont"}]}], "]"}], "//", 
+                "spdForm"}]}], "\n", "}"}], ",", 
+             RowBox[{"{", "\n", 
+              RowBox[{"(*", 
+               RowBox[{
+               "Event", " ", "handler", " ", "can", " ", "handle", " ", 
+                "clicks"}], "*)"}], "\n", 
+              RowBox[{"EventHandler", "[", "\n", 
+               RowBox[{"(*", 
+                RowBox[{"Convert", " ", "into", " ", "tooltip", " ", "form"}],
+                 "*)"}], "\n", 
+               RowBox[{"(*", 
+                RowBox[{"This", " ", "is", " ", "disgusting"}], "*)"}], "\n", 
+               RowBox[{
+                RowBox[{"Tooltip", "[", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{"Dashed", ",", "spdColourLine", ",", 
+                    RowBox[{"InfiniteLine", "[", 
+                    RowBox[{
+                    RowBox[{"points", "[", 
+                    RowBox[{"[", "point", "]"}], "]"}], "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], "]"}]}], "}"}], ",", "\n", 
+                  RowBox[{"(*", 
+                   RowBox[{
+                   "Give", " ", "coordinate", " ", "when", " ", "you", " ", 
+                    "hover", " ", "over", " ", "location"}], "*)"}], "\n", 
+                  "tooltipString"}], "\n", "]"}], ",", "\n", 
+                RowBox[{"(*", 
+                 RowBox[{
+                  RowBox[{
+                  "If", " ", "a", " ", "click", " ", "is", " ", "detected", 
+                   " ", "on", " ", "point"}], ",", " ", 
+                  RowBox[{
+                  "print", " ", "whatever", " ", "is", " ", "in", " ", 
+                   "tooltip"}]}], "*)"}], "\n", 
+                RowBox[{"{", 
+                 RowBox[{"\"\<MouseClicked\>\"", ":>", 
+                  RowBox[{"Print", "@", "tooltipString"}]}], "}"}]}], "]"}], 
+              "\n", "}"}], ",", "\n", 
+             RowBox[{"(*", 
+              RowBox[{"IMPORTANT", ",", " ", 
+               RowBox[{"must", " ", "save", " ", "definitions"}]}], "*)"}], 
+             "\n", 
+             RowBox[{"SaveDefinitions", "\[Rule]", "True"}]}], "]"}], ",", 
+           "\n", "\n", 
+           RowBox[{"(*", 
+            RowBox[{"Iterate", " ", "over", " ", "every", " ", "line"}], 
+            "*)"}], "\n", 
+           RowBox[{"{", 
+            RowBox[{"point2", ",", 
+             RowBox[{"Length", "[", 
+              RowBox[{
+               RowBox[{"points", "[", 
+                RowBox[{"[", "point", "]"}], "]"}], "[", 
+               RowBox[{"[", "2", "]"}], "]"}], "]"}]}], "}"}]}], "]"}], ",", 
+         "\n", 
+         RowBox[{"(*", 
+          RowBox[{"Iterate", " ", "over", " ", "every", " ", "equation"}], 
+          "*)"}], "\n", 
+         RowBox[{"{", 
+          RowBox[{"point", ",", 
+           RowBox[{"Length", "[", "points", "]"}]}], "}"}]}], "]"}], 
+       "]"}]}]}], ";"}], "\n", "\n", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", 
+         RowBox[{"--", 
+          RowBox[{"--", 
+           RowBox[{"--", 
+            RowBox[{"--", 
+             RowBox[{"--", 
+              RowBox[{"--", 
+               RowBox[{"--", 
+                RowBox[{"--", 
+                 RowBox[{"--", 
+                  RowBox[{"-", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Plot", "--"}], "--"}], "--"}], 
+                    "--"}]}]}]}]}]}]}]}]}]}]}]}]}]}], 
+      RowBox[{"--", 
+       RowBox[{"--", 
+        RowBox[{"--", 
+         RowBox[{"--", 
+          RowBox[{"--", 
+           RowBox[{"--", 
+            RowBox[{"--", 
+             RowBox[{"--", 
+              RowBox[{"-", "\n", "Predeclare"}]}]}]}]}]}]}]}]}], " ", 
+      "options", " ", "for", " ", "spdPlot"}], ",", " ", 
+     RowBox[{
+     "which", " ", "are", " ", "all", " ", "Plot", " ", "options", "\n", 
+      "Incremental", " ", "checks", " ", "if", " ", "user", " ", "wants", " ",
+       "to", " ", "see", " ", "spdPlot", " ", "updated", " ", "over", " ", 
+      "time"}]}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Options", "[", "spdPlot", "]"}], "=", 
+     RowBox[{
+      RowBox[{"Options", "[", "spdPlotIntegrate", "]"}], "=", 
+      RowBox[{
+       RowBox[{"Options", "[", "spdPlotDerivative", "]"}], "=", 
+       RowBox[{
+        RowBox[{"Options", "[", "spdPlotInverse", "]"}], "=", 
+        RowBox[{"Join", "@", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Options", "[", "Plot", "]"}], ",", 
+           RowBox[{"Incremental", "->", "True"}]}], "}"}]}]}]}]}]}], ";"}], 
+   "\n", "\n", 
+   RowBox[{"(*", 
+    RowBox[{"Integrate", " ", "plot"}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"spdPlotIntegrate", "[", 
+      RowBox[{"equ_", ",", 
+       RowBox[{"dom", ":", 
+        RowBox[{"{", 
+         RowBox[{"_", ",", 
+          RowBox[{"_", "?", "NumericQ"}], ",", 
+          RowBox[{"_", "?", "NumericQ"}]}], "}"}], ":", 
+        RowBox[{"{", 
+         RowBox[{"x", ",", 
+          RowBox[{"-", "10"}], ",", "10"}], "}"}]}], ",", 
+       RowBox[{"plotOptions", ":", 
+        RowBox[{"OptionsPattern", "[", 
+         RowBox[{"Incremental", "->", "True"}], "]"}]}]}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"{", "\n", 
+       RowBox[{"DynamicModule", "[", 
+        RowBox[{
+         RowBox[{"{", "\n", 
+          RowBox[{"(*", 
+           RowBox[{
+           "Turn", " ", "equations", " ", "into", " ", "a", " ", "standard", 
+            " ", "table", " ", "form", " ", "that", " ", "can", " ", "be", 
+            " ", "used"}], "*)"}], "\n", 
+          RowBox[{"equList", "=", 
+           RowBox[{"Rationalize", "@", 
+            RowBox[{"Flatten", "@", 
+             RowBox[{"{", "equ", "}"}]}]}]}], "\n", "}"}], ",", 
+         RowBox[{
+          RowBox[{"{", "\n", 
+           RowBox[{"Return", "[", "\n", 
+            RowBox[{
+             RowBox[{"Plot", "[", 
+              RowBox[{
+               RowBox[{"Tooltip", "[", 
+                RowBox[{"Evaluate", "@", 
+                 RowBox[{"Table", "[", 
+                  RowBox[{
+                   RowBox[{"Integrate", "[", 
+                    RowBox[{
+                    RowBox[{"equList", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], ",", 
+                    RowBox[{"dom", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}]}], "]"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{"i", ",", 
+                    RowBox[{"Length", "[", "equList", "]"}]}], "}"}]}], 
+                  "]"}]}], "]"}], ",", "dom", ",", 
+               RowBox[{"Evaluate", "@", 
+                RowBox[{"FilterRules", "[", 
+                 RowBox[{
+                  RowBox[{"{", "plotOptions", "}"}], ",", 
+                  RowBox[{"Options", "@", "spdPlot"}]}], "]"}]}], ",", 
+               RowBox[{"PlotRange", "\[Rule]", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"-", "10"}], ",", "10"}], "}"}]}], ",", 
+               RowBox[{"PlotTheme", "->", "\"\<NeonColor\>\""}]}], "]"}], ",",
+              "\n", "spdPlotIntegrate"}], "]"}], "\n", "}"}], "[", 
+          RowBox[{"[", "1", "]"}], "]"}], ",", "\n", 
+         RowBox[{"SaveDefinitions", "\[Rule]", "True"}]}], "]"}], "\n", "}"}],
+       "[", 
+      RowBox[{"[", "1", "]"}], "]"}]}], ";"}], "\n", "\n", 
+   RowBox[{"(*", 
+    RowBox[{"Derivative", " ", "plot"}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"spdPlotDerivative", "[", 
+      RowBox[{"equ_", ",", 
+       RowBox[{"dom", ":", 
+        RowBox[{"{", 
+         RowBox[{"_", ",", 
+          RowBox[{"_", "?", "NumericQ"}], ",", 
+          RowBox[{"_", "?", "NumericQ"}]}], "}"}], ":", 
+        RowBox[{"{", 
+         RowBox[{"x", ",", 
+          RowBox[{"-", "10"}], ",", "10"}], "}"}]}], ",", 
+       RowBox[{"plotOptions", ":", 
+        RowBox[{"OptionsPattern", "[", 
+         RowBox[{"Incremental", "->", "True"}], "]"}]}]}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"{", "\n", 
+       RowBox[{"DynamicModule", "[", 
+        RowBox[{
+         RowBox[{"{", "\n", 
+          RowBox[{"(*", 
+           RowBox[{
+           "Turn", " ", "equations", " ", "into", " ", "a", " ", "standard", 
+            " ", "table", " ", "form", " ", "that", " ", "can", " ", "be", 
+            " ", "used"}], "*)"}], "\n", 
+          RowBox[{"equList", "=", 
+           RowBox[{"Rationalize", "@", 
+            RowBox[{"Flatten", "@", 
+             RowBox[{"{", "equ", "}"}]}]}]}], "\n", "}"}], ",", 
+         RowBox[{
+          RowBox[{"{", "\n", 
+           RowBox[{"Return", "[", "\n", 
+            RowBox[{
+             RowBox[{"Plot", "[", 
+              RowBox[{
+               RowBox[{"Tooltip", "[", 
+                RowBox[{"Evaluate", "@", 
+                 RowBox[{"Table", "[", 
+                  RowBox[{
+                   RowBox[{"D", "[", 
+                    RowBox[{
+                    RowBox[{"equList", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], ",", 
+                    RowBox[{"dom", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}]}], "]"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{"i", ",", 
+                    RowBox[{"Length", "[", "equList", "]"}]}], "}"}]}], 
+                  "]"}]}], "]"}], ",", "dom", ",", 
+               RowBox[{"Evaluate", "@", 
+                RowBox[{"FilterRules", "[", 
+                 RowBox[{
+                  RowBox[{"{", "plotOptions", "}"}], ",", 
+                  RowBox[{"Options", "@", "spdPlot"}]}], "]"}]}], ",", 
+               RowBox[{"PlotRange", "\[Rule]", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"-", "10"}], ",", "10"}], "}"}]}], ",", 
+               RowBox[{"PlotTheme", "->", "\"\<NeonColor\>\""}]}], "]"}], ",",
+              "\n", "spdPlotDerivative"}], "]"}], "\n", "}"}], "[", 
+          RowBox[{"[", "1", "]"}], "]"}], ",", "\n", 
+         RowBox[{"SaveDefinitions", "\[Rule]", "True"}]}], "]"}], "\n", "}"}],
+       "[", 
+      RowBox[{"[", "1", "]"}], "]"}]}], ";"}], "\n", "\n", 
+   RowBox[{"(*", 
+    RowBox[{"Inverse", " ", 
+     RowBox[{"plot", ".", " ", "Thanks"}], " ", "Dulvino"}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"spdPlotInverse", "[", 
+      RowBox[{"equ_", ",", 
+       RowBox[{"dom", ":", 
+        RowBox[{"{", 
+         RowBox[{"_", ",", 
+          RowBox[{"_", "?", "NumericQ"}], ",", 
+          RowBox[{"_", "?", "NumericQ"}]}], "}"}], ":", 
+        RowBox[{"{", 
+         RowBox[{"x", ",", 
+          RowBox[{"-", "10"}], ",", "10"}], "}"}]}], ",", 
+       RowBox[{"plotOptions", ":", 
+        RowBox[{"OptionsPattern", "[", 
+         RowBox[{"Incremental", "->", "True"}], "]"}]}]}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"{", "\n", 
+       RowBox[{"DynamicModule", "[", 
+        RowBox[{
+         RowBox[{"{", "\n", 
+          RowBox[{"(*", 
+           RowBox[{
+           "Turn", " ", "equations", " ", "into", " ", "a", " ", "standard", 
+            " ", "table", " ", "form", " ", "that", " ", "can", " ", "be", 
+            " ", "used"}], "*)"}], "\n", 
+          RowBox[{"equList", "=", 
+           RowBox[{"Rationalize", "@", 
+            RowBox[{"Flatten", "@", 
+             RowBox[{"{", "equ", "}"}]}]}]}], "\n", "}"}], ",", 
+         RowBox[{
+          RowBox[{"{", "\n", 
+           RowBox[{"Return", "[", "\n", 
+            RowBox[{
+             RowBox[{"ParametricPlot", "[", 
+              RowBox[{
+               RowBox[{"Tooltip", "[", 
+                RowBox[{"Evaluate", "@", 
+                 RowBox[{"Table", "[", 
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"equList", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], ",", 
+                    RowBox[{"dom", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}]}], "}"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{"i", ",", 
+                    RowBox[{"Length", "[", "equList", "]"}]}], "}"}]}], 
+                  "]"}]}], "]"}], ",", "dom", ",", 
+               RowBox[{"Evaluate", "@", 
+                RowBox[{"FilterRules", "[", 
+                 RowBox[{
+                  RowBox[{"{", "plotOptions", "}"}], ",", 
+                  RowBox[{"Options", "@", "spdPlot"}]}], "]"}]}], ",", 
+               RowBox[{"PlotRange", "\[Rule]", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"-", "10"}], ",", "10"}], "}"}]}], ",", 
+               RowBox[{"PlotTheme", "->", "\"\<NeonColor\>\""}]}], "]"}], ",",
+              "\n", "spdPlotInverse"}], "]"}], "\n", "}"}], "[", 
+          RowBox[{"[", "1", "]"}], "]"}], ",", "\n", 
+         RowBox[{"SaveDefinitions", "\[Rule]", "True"}]}], "]"}], "\n", "}"}],
+       "[", 
+      RowBox[{"[", "1", "]"}], "]"}]}], ";"}], "\n", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{
+     "Plot", " ", "all", " ", "of", " ", "this", "\n", "This", " ", "is", " ",
+       "a", " ", "new", " ", "way", " ", "of", " ", "declaring", " ", 
+      "domain", " ", "and", " ", "range", " ", "that", " ", 
+      RowBox[{"I", "'"}], "m", " ", "not", " ", "use", " ", 
+      RowBox[{"to", ".", " ", "From"}], " ", 
+      RowBox[{"Joseph", "'"}], "s", " ", "GigaChadPlot", " ", "of", " ", 
+      RowBox[{"course", " ", ":"}]}], ")"}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"spdPlot", "[", 
+      RowBox[{"equ_", ",", 
+       RowBox[{"dom", ":", 
+        RowBox[{"{", 
+         RowBox[{"_", ",", 
+          RowBox[{"_", "?", "NumericQ"}], ",", 
+          RowBox[{"_", "?", "NumericQ"}]}], "}"}], ":", 
+        RowBox[{"{", 
+         RowBox[{"x", ",", 
+          RowBox[{"-", "10"}], ",", "10"}], "}"}]}], ",", 
+       RowBox[{"plotOptions", ":", 
+        RowBox[{"OptionsPattern", "[", 
+         RowBox[{"Incremental", "->", "True"}], "]"}]}]}], "]"}], ":=", 
+     RowBox[{
+      RowBox[{"spdPlot", "[", 
+       RowBox[{"equ", ",", "dom", ",", "plotOptions"}], "]"}], "=", 
+      RowBox[{
+       RowBox[{"{", "\n", "\n", 
+        RowBox[{"(*", 
+         RowBox[{
+          RowBox[{"Plz", " ", "stay", " ", "quiet"}], ",", " ", 
+          RowBox[{
+          "thanks", "\n", "Immuatable", " ", "variables", "\n", "Sometimes", 
+           " ", "you", " ", "have", " ", "to", " ", "delete", " ", 
+           "DynamicModule", " ", "for", " ", "some", " ", "unknown", " ", 
+           "reason", "\n", "Do", " ", "not", " ", "make", " ", "this", " ", 
+           "Quiet"}]}], "*)"}], "\n", 
+        RowBox[{"DynamicModule", "[", 
+         RowBox[{
+          RowBox[{"{", "\n", 
+           RowBox[{"graph", ",", "\n", 
+            RowBox[{"(*", 
+             RowBox[{
+             "Turn", " ", "equations", " ", "into", " ", "a", " ", "standard",
+               " ", "table", " ", "form", " ", "that", " ", "can", " ", "be", 
+              " ", "used"}], "*)"}], "\n", 
+            RowBox[{"equList", "=", 
+             RowBox[{"Rationalize", "@", 
+              RowBox[{"Flatten", "@", 
+               RowBox[{"{", "equ", "}"}]}]}]}], ",", "\n", 
+            RowBox[{"(*", 
+             RowBox[{
+             "The", " ", "left", " ", "input", " ", "bar", " ", "variables"}],
+              "*)"}], "\n", 
+            RowBox[{"findXInput", "=", "0"}], ",", " ", 
+            RowBox[{"findXBool", "=", "True"}], ",", "\n", 
+            RowBox[{"findYInput", "=", "0"}], ",", " ", 
+            RowBox[{"findYBool", "=", "True"}], ",", "\n", 
+            RowBox[{"findGradInput", "=", "0"}], ",", " ", 
+            RowBox[{"findGradBool", "=", "True"}], ",", "\n", 
+            RowBox[{"findTangentInput", "=", "0"}], ",", " ", 
+            RowBox[{"findTangentBool", "=", "False"}], ",", "\n", 
+            RowBox[{"findNormalInput", "=", "0"}], ",", " ", 
+            RowBox[{"findNormalBool", "=", "False"}], ",", "\n", 
+            RowBox[{"asyHBool", "=", "False"}], ",", "\n", 
+            RowBox[{"asyVBool", "=", "False"}], ",", "\n", 
+            RowBox[{"asySBool", "=", "False"}], ",", "\n", 
+            RowBox[{"poiBool", "=", "True"}], ",", "\n", 
+            RowBox[{"inverseBool", "=", "False"}], ",", "\n", 
+            RowBox[{"derivativeBool", "=", "False"}], ",", "\n", 
+            RowBox[{"integrateBool", "=", "False"}], ",", "\n", 
+            RowBox[{"(*", 
+             RowBox[{
+             "Dots", " ", "and", " ", "lines", " ", "to", " ", "be", " ", 
+              "processed", " ", "later"}], "*)"}], "\n", 
+            RowBox[{"findXG", "=", 
+             RowBox[{"{", 
+              RowBox[{"{", "}"}], "}"}]}], ",", "\n", 
+            RowBox[{"findYG", "=", 
+             RowBox[{"{", 
+              RowBox[{"{", "}"}], "}"}]}], ",", "\n", 
+            RowBox[{"findGrad", "=", 
+             RowBox[{"{", 
+              RowBox[{"{", "}"}], "}"}]}], ",", "\n", 
+            RowBox[{"findTangent", "=", 
+             RowBox[{"{", 
+              RowBox[{"{", "}"}], "}"}]}], ",", "\n", 
+            RowBox[{"findNormal", "=", 
+             RowBox[{"{", 
+              RowBox[{"{", "}"}], "}"}]}], ",", "\n", 
+            RowBox[{"asyHG", "=", 
+             RowBox[{"{", "}"}]}], ",", "\n", 
+            RowBox[{"asyVG", "=", 
+             RowBox[{"{", "}"}]}], ",", "\n", 
+            RowBox[{"asySG", "=", 
+             RowBox[{"{", "}"}]}], ",", "\n", 
+            RowBox[{"poiG", "=", 
+             RowBox[{"{", "}"}]}], ",", "\n", 
+            RowBox[{"inverseG", "=", 
+             RowBox[{"{", "}"}]}], ",", "\n", 
+            RowBox[{"derivativeG", "=", 
+             RowBox[{"{", "}"}]}], ",", "\n", 
+            RowBox[{"integrateG", "=", 
+             RowBox[{"{", "}"}]}], ",", "\n", 
+            RowBox[{"(*", 
+             RowBox[{
+             "The", " ", "only", " ", "thing", " ", "that", " ", "is", " ", 
+              "output"}], "*)"}], "\n", "outputGraphic"}], "\n", "}"}], ",", 
+          RowBox[{
+           RowBox[{"{", "\n", "\n", 
+            RowBox[{"(*", 
+             RowBox[{
+             "Important", " ", "to", " ", "evaluate", " ", "options", " ", 
+              "in", " ", "filter", " ", "rules"}], "*)"}], "\n", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"graph", "=", 
+               RowBox[{"spdPlotFast", "[", 
+                RowBox[{"equList", ",", "dom", ",", 
+                 RowBox[{"Evaluate", "@", 
+                  RowBox[{"FilterRules", "[", 
+                   RowBox[{
+                    RowBox[{"{", "plotOptions", "}"}], ",", 
+                    RowBox[{"Options", "@", "Plot"}]}], "]"}]}]}], "]"}]}], 
+              ";", "\n", "\n", 
+              RowBox[{"(*", 
+               RowBox[{"Core", " ", "plotting", " ", "function"}], "*)"}], 
+              "\n", 
+              RowBox[{"outputGraphic", "=", 
+               RowBox[{"TableForm", "[", 
+                RowBox[{
+                 RowBox[{"{", "\n", 
+                  RowBox[{"(*", 
+                   RowBox[{"Pseudo", " ", "Manipulate", " ", "area"}], "*)"}],
+                   "\n", 
+                  RowBox[{
+                   RowBox[{"TableForm", "@", 
+                    RowBox[{"{", "\n", 
+                    RowBox[{"(*", 
+                    RowBox[{
+                    "Find", " ", "and", " ", "X", " ", "and", " ", "Y", " ", 
+                    "Point"}], "*)"}], "\n", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Style", "[", 
+                    RowBox[{"\"\<Find X\>\"", ",", 
+                    RowBox[{"FontFamily", "\[Rule]", "spdFont"}]}], "]"}], 
+                    " ", 
+                    RowBox[{"Checkbox", "[", 
+                    RowBox[{"Dynamic", "[", "findXBool", "]"}], "]"}]}], 
+                    "}"}], ",", "\n", 
+                    RowBox[{"InputField", "[", 
+                    RowBox[{
+                    RowBox[{"Dynamic", "[", "findXInput", "]"}], ",", 
+                    RowBox[{"FieldSize", "->", "Small"}], ",", 
+                    RowBox[{"ContinuousAction", "\[Rule]", "False"}]}], "]"}],
+                     ",", "\n", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Style", "[", 
+                    RowBox[{"\"\<Find Y\>\"", ",", 
+                    RowBox[{"FontFamily", "\[Rule]", "spdFont"}]}], "]"}], 
+                    " ", 
+                    RowBox[{"Checkbox", "[", 
+                    RowBox[{"Dynamic", "[", "findYBool", "]"}], "]"}]}], 
+                    "}"}], ",", "\n", 
+                    RowBox[{"InputField", "[", 
+                    RowBox[{
+                    RowBox[{"Dynamic", "[", "findYInput", "]"}], ",", 
+                    RowBox[{"FieldSize", "->", "Small"}], ",", 
+                    RowBox[{"ContinuousAction", "\[Rule]", "False"}]}], "]"}],
+                     ",", "\n", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Style", "[", 
+                    RowBox[{"\"\<Find Gradient\>\"", ",", 
+                    RowBox[{"FontFamily", "\[Rule]", "spdFont"}]}], "]"}], 
+                    RowBox[{"Checkbox", "[", 
+                    RowBox[{"Dynamic", "[", "findGradBool", "]"}], "]"}]}], 
+                    "}"}], ",", "\n", 
+                    RowBox[{"InputField", "[", 
+                    RowBox[{
+                    RowBox[{"Dynamic", "[", "findGradInput", "]"}], ",", 
+                    RowBox[{"FieldSize", "->", "Small"}], ",", 
+                    RowBox[{"ContinuousAction", "\[Rule]", "False"}]}], "]"}],
+                     ",", "\n", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Style", "[", 
+                    RowBox[{"\"\<Find Tangent at X\>\"", ",", 
+                    RowBox[{"FontFamily", "\[Rule]", "spdFont"}]}], "]"}], 
+                    " ", 
+                    RowBox[{"Checkbox", "[", 
+                    RowBox[{"Dynamic", "[", "findTangentBool", "]"}], "]"}]}],
+                     "}"}], ",", "\n", 
+                    RowBox[{"InputField", "[", 
+                    RowBox[{
+                    RowBox[{"Dynamic", "[", "findTangentInput", "]"}], ",", 
+                    RowBox[{"FieldSize", "->", "Small"}], ",", 
+                    RowBox[{"ContinuousAction", "\[Rule]", "False"}]}], "]"}],
+                     ",", "\n", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Style", "[", 
+                    RowBox[{"\"\<Find Normal at X\>\"", ",", 
+                    RowBox[{"FontFamily", "\[Rule]", "spdFont"}]}], "]"}], 
+                    " ", 
+                    RowBox[{"Checkbox", "[", 
+                    RowBox[{"Dynamic", "[", "findNormalBool", "]"}], "]"}]}], 
+                    "}"}], ",", "\n", 
+                    RowBox[{"InputField", "[", 
+                    RowBox[{
+                    RowBox[{"Dynamic", "[", "findNormalInput", "]"}], ",", 
+                    RowBox[{"FieldSize", "->", "Small"}], ",", 
+                    RowBox[{"ContinuousAction", "\[Rule]", "False"}]}], "]"}],
+                     ",", "\n", 
+                    RowBox[{"(*", 
+                    RowBox[{
+                    "Checkbox", " ", "for", " ", "points", " ", "of", " ", 
+                    "intersection"}], "*)"}], "\n", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Style", "[", 
+                    RowBox[{"\"\<Points of Intersection\>\"", ",", 
+                    RowBox[{"FontFamily", "\[Rule]", "spdFont"}]}], "]"}], 
+                    RowBox[{"Checkbox", "[", 
+                    RowBox[{"Dynamic", "[", "poiBool", "]"}], "]"}]}], "}"}], 
+                    ",", "\n", 
+                    RowBox[{"(*", 
+                    RowBox[{
+                    "Checkbox", " ", "for", " ", "toggling", " ", 
+                    "asymptotes"}], "*)"}], "\n", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Style", "[", 
+                    RowBox[{"\"\<Horizontal Asymptotes\>\"", ",", 
+                    RowBox[{"FontFamily", "\[Rule]", "spdFont"}]}], "]"}], 
+                    RowBox[{"Checkbox", "[", 
+                    RowBox[{"Dynamic", "[", "asyHBool", "]"}], "]"}]}], "}"}],
+                     ",", "\n", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Style", "[", 
+                    RowBox[{"\"\<Vertical Asymptotes\>\"", ",", 
+                    RowBox[{"FontFamily", "\[Rule]", "spdFont"}]}], "]"}], 
+                    RowBox[{"Checkbox", "[", 
+                    RowBox[{"Dynamic", "[", "asyVBool", "]"}], "]"}]}], "}"}],
+                     ",", "\n", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Style", "[", 
+                    RowBox[{"\"\<Slant Asymptotes\>\"", ",", 
+                    RowBox[{"FontFamily", "\[Rule]", "spdFont"}]}], "]"}], 
+                    RowBox[{"Checkbox", "[", 
+                    RowBox[{"Dynamic", "[", "asySBool", "]"}], "]"}]}], "}"}],
+                     ",", "\n", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Style", "[", 
+                    RowBox[{"\"\<Inverse\>\"", ",", 
+                    RowBox[{"FontFamily", "\[Rule]", "spdFont"}]}], "]"}], 
+                    RowBox[{"Checkbox", "[", 
+                    RowBox[{"Dynamic", "[", "inverseBool", "]"}], "]"}]}], 
+                    "}"}], ",", "\n", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Style", "[", 
+                    RowBox[{"\"\<Derivative\>\"", ",", 
+                    RowBox[{"FontFamily", "\[Rule]", "spdFont"}]}], "]"}], 
+                    RowBox[{"Checkbox", "[", 
+                    RowBox[{"Dynamic", "[", "derivativeBool", "]"}], "]"}]}], 
+                    "}"}], ",", "\n", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Style", "[", 
+                    RowBox[{"\"\<Integrate\>\"", ",", 
+                    RowBox[{"FontFamily", "\[Rule]", "spdFont"}]}], "]"}], 
+                    RowBox[{"Checkbox", "[", 
+                    RowBox[{"Dynamic", "[", "integrateBool", "]"}], "]"}]}], 
+                    "}"}]}], "\n", "\n", "}"}]}], ",", "\n", "\n", 
+                   RowBox[{"Dynamic", "[", 
+                    RowBox[{
+                    RowBox[{"Show", "[", 
+                    RowBox[{"graph", ",", "\n", 
+                    RowBox[{"(*", 
+                    RowBox[{"Inverse", " ", "and", " ", "derivative", " ", 
+                    RowBox[{"plots", ".", " ", "These"}], " ", "can", " ", 
+                    "be", " ", "behind", " ", "everything"}], "*)"}], "\n", 
+                    "\t", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"inverseBool", "==", "True"}], ",", "inverseG", 
+                    ",", 
+                    RowBox[{"{", "}"}]}], "]"}], ",", "\n", "\t", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"derivativeBool", "==", "True"}], ",", 
+                    "derivativeG", ",", 
+                    RowBox[{"{", "}"}]}], "]"}], ",", "\n", "\t", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"integrateBool", "==", "True"}], ",", 
+                    "integrateG", ",", 
+                    RowBox[{"{", "}"}]}], "]"}], ",", "\n", 
+                    RowBox[{"(*", 
+                    RowBox[{
+                    RowBox[{
+                    "Plot", " ", "asymptotes", " ", "after", " ", "that"}], 
+                    ",", " ", 
+                    RowBox[{"since", " ", "they", " ", "are", " ", "long"}]}],
+                     "*)"}], "\n", "\t", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"asyHBool", "==", "True"}], ",", "asyHG", ",", 
+                    RowBox[{"{", "}"}]}], "]"}], ",", "\n", "\t", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"asyVBool", "==", "True"}], ",", "asyVG", ",", 
+                    RowBox[{"{", "}"}]}], "]"}], ",", "\n", "\t", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"asySBool", "==", "True"}], ",", "asySG", ",", 
+                    RowBox[{"{", "}"}]}], "]"}], ",", "\n", 
+                    RowBox[{"(*", 
+                    RowBox[{
+                    RowBox[{
+                    "Find", " ", "these", " ", "points", " ", "on", " ", 
+                    "the", " ", "graph", " ", "before", " ", "poi", " ", 
+                    "and", " ", "cp"}], ",", " ", 
+                    RowBox[{
+                    "since", " ", "Find", " ", "is", " ", "less", " ", 
+                    "important"}]}], "*)"}], "\n", "\t", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"findTangentBool", "==", "True"}], ",", 
+                    RowBox[{"findTangent", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], ",", 
+                    RowBox[{"{", "}"}]}], "]"}], ",", "\n", "\t", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"findNormalBool", "==", "True"}], ",", 
+                    RowBox[{"findNormal", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], ",", 
+                    RowBox[{"{", "}"}]}], "]"}], ",", "\n", "\t", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"findXBool", "==", "True"}], ",", 
+                    RowBox[{"findXG", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], ",", 
+                    RowBox[{"{", "}"}]}], "]"}], ",", "\n", "\t", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"findYBool", "==", "True"}], ",", 
+                    RowBox[{"findYG", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], ",", 
+                    RowBox[{"{", "}"}]}], "]"}], ",", "\n", "\t", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"findGradBool", "==", "True"}], ",", 
+                    RowBox[{"findGrad", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], ",", 
+                    RowBox[{"{", "}"}]}], "]"}], ",", "\n", 
+                    RowBox[{"(*", 
+                    RowBox[{
+                    RowBox[{"Plot", " ", "points", " ", "next"}], ",", " ", 
+                    RowBox[{
+                    "since", " ", "they", " ", "are", " ", "small"}]}], 
+                    "*)"}], "\n", "\t", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"poiBool", "==", "True"}], ",", "poiG", ",", 
+                    RowBox[{"{", "}"}]}], "]"}]}], "\n", "\t", "]"}], ",", 
+                    "\n", 
+                    RowBox[{"(*", 
+                    RowBox[{"Dynamic", " ", "Options"}], "*)"}], "\n", 
+                    RowBox[{"(*", 
+                    RowBox[{"Plz", " ", 
+                    RowBox[{"don", "'"}], "t", " ", "process", " ", 
+                    "anything", " ", "here"}], "*)"}], "\n", "\t", "None", 
+                    ",", "\n", 
+                    RowBox[{"(*", 
+                    RowBox[{
+                    "These", " ", "are", " ", "symbols", " ", "to", " ", 
+                    RowBox[{"track", ".", " ", 
+                    RowBox[{"Don", "'"}]}], "t", " ", "keep", " ", "track", 
+                    " ", "of", " ", "anything", " ", "else"}], "*)"}], "\n", 
+                    "\t", 
+                    RowBox[{"TrackedSymbols", "\[RuleDelayed]", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "asyHBool", ",", " ", "asyVBool", ",", " ", "asySBool", 
+                    ",", " ", "poiBool", ",", " ", "inverseBool", ",", " ", 
+                    "derivativeBool", ",", " ", "integrateBool", ",", " ", 
+                    "findXInput", ",", " ", "findYInput", ",", " ", 
+                    "findGradInput", ",", " ", "findTangentInput", ",", " ", 
+                    "asyHG", ",", " ", "asyVG", ",", " ", "poiG", ",", " ", 
+                    "findXBool", ",", " ", "findYBool", ",", " ", 
+                    "findGradBool", ",", " ", "findTangentBool", ",", " ", 
+                    "findNormalBool"}], "}"}]}]}], "\n", "\t", "]"}]}], "\n", 
+                  "}"}], ",", "\n", 
+                 RowBox[{"(*", 
+                  RowBox[{"Tableform", " ", "options"}], "*)"}], "\n", 
+                 RowBox[{"TableDirections", "\[Rule]", "Row"}], ",", 
+                 RowBox[{"TableSpacing", "\[Rule]", 
+                  RowBox[{"{", 
+                   RowBox[{"0", ",", " ", "0"}], "}"}]}]}], "]"}]}]}], ",", 
+             "\n", "\n", 
+             RowBox[{"(*", 
+              RowBox[{
+               RowBox[{"If", " ", "Incremental", " ", "is", " ", "true"}], 
+               ",", " ", 
+               RowBox[{"print", " ", "outputGraphic", " ", "first"}]}], 
+              "*)"}], "\n", 
+             RowBox[{
+              RowBox[{"If", "[", 
+               RowBox[{
+                RowBox[{"Incremental", "/.", 
+                 RowBox[{"Flatten", "@", 
+                  RowBox[{"{", 
+                   RowBox[{"plotOptions", ",", 
+                    RowBox[{"Options", "[", "spdPlot", "]"}]}], "}"}]}]}], 
+                ",", 
+                RowBox[{"{", "\n", "\t", 
+                 RowBox[{
+                  RowBox[{"PrintTemporary", "[", 
+                   RowBox[{"Dynamic", "[", 
+                    RowBox[{"outputGraphic", ",", "None", ",", 
+                    RowBox[{"TrackedSymbols", "\[RuleDelayed]", 
+                    RowBox[{"{", "outputGraphic", "}"}]}]}], "]"}], "]"}], 
+                  ";"}], "\n", "}"}]}], "]"}], ";", "\n", "\n", 
+              RowBox[{"(*", 
+               RowBox[{
+                RowBox[{"Dynamically", " ", "update", " ", "findXG"}], ",", 
+                " ", 
+                RowBox[{
+                "while", " ", "deleting", " ", "empty", " ", "ones"}]}], 
+               "*)"}], "\n", 
+              RowBox[{"findXG", "=", 
+               RowBox[{"Dynamic", "[", 
+                RowBox[{
+                 RowBox[{"spdPointsG", "[", 
+                  RowBox[{
+                   RowBox[{"Complement", "[", 
+                    RowBox[{
+                    RowBox[{"spdFindX", "[", 
+                    RowBox[{"equList", ",", "findXInput", ",", 
+                    RowBox[{"dom", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}]}], "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"{", "}"}], "}"}]}], "]"}], ",", "\"\<Find X\>\"",
+                    ",", "spdColourPoint2"}], "]"}], ",", 
+                 RowBox[{"TrackedSymbols", "\[RuleDelayed]", 
+                  RowBox[{"{", "findXInput", "}"}]}]}], "]"}]}], ";", "\n", 
+              RowBox[{"(*", 
+               RowBox[{"Dynamically", " ", "update", " ", "findYG"}], "*)"}], 
+              "\n", 
+              RowBox[{"findYG", "=", 
+               RowBox[{"Dynamic", "[", 
+                RowBox[{
+                 RowBox[{"spdPointsG", "[", 
+                  RowBox[{
+                   RowBox[{"Complement", "[", 
+                    RowBox[{
+                    RowBox[{"spdFindY", "[", 
+                    RowBox[{"equList", ",", "findYInput", ",", 
+                    RowBox[{"dom", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], ",", 
+                    RowBox[{"dom", "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], ",", 
+                    RowBox[{"dom", "[", 
+                    RowBox[{"[", "3", "]"}], "]"}]}], "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"{", "}"}], "}"}]}], "]"}], ",", "\"\<Find Y\>\"",
+                    ",", "spdColourPoint2"}], "]"}], ",", 
+                 RowBox[{"TrackedSymbols", "\[RuleDelayed]", 
+                  RowBox[{"{", "findYInput", "}"}]}]}], "]"}]}], ";", "\n", 
+              RowBox[{"findGrad", "=", 
+               RowBox[{"Dynamic", "[", 
+                RowBox[{
+                 RowBox[{"spdPointsG", "[", 
+                  RowBox[{
+                   RowBox[{"Complement", "[", 
+                    RowBox[{
+                    RowBox[{"spdFindGrad", "[", 
+                    RowBox[{"equList", ",", "findGradInput", ",", 
+                    RowBox[{"dom", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], ",", 
+                    RowBox[{"dom", "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], ",", 
+                    RowBox[{"dom", "[", 
+                    RowBox[{"[", "3", "]"}], "]"}]}], "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"{", "}"}], "}"}]}], "]"}], ",", 
+                   "\"\<Find Gradient\>\"", ",", "spdColourPoint1"}], "]"}], 
+                 ",", 
+                 RowBox[{"TrackedSymbols", "\[RuleDelayed]", 
+                  RowBox[{"{", "findGradInput", "}"}]}]}], "]"}]}], ";", "\n", 
+              RowBox[{"poiG", "=", 
+               RowBox[{"spdPointsG", "[", 
+                RowBox[{
+                 RowBox[{"spdPOI", "[", 
+                  RowBox[{"equList", ",", 
+                   RowBox[{"dom", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], ",", 
+                   RowBox[{"dom", "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], ",", 
+                   RowBox[{"dom", "[", 
+                    RowBox[{"[", "3", "]"}], "]"}]}], "]"}], ",", 
+                 "\"\<Point of Intersection\>\"", ",", "spdColourPoint1"}], 
+                "]"}]}], ";", "\n", 
+              RowBox[{"(*", 
+               RowBox[{
+               "Return", " ", "values", " ", "when", " ", "they", " ", 
+                "finish", " ", "processing"}], "*)"}], "\n", "\n", 
+              RowBox[{"(*", 
+               RowBox[{
+               "Process", " ", "these", " ", "first", " ", "before", " ", 
+                "finishing", " ", "processing"}], "*)"}], "\n", 
+              RowBox[{"findTangent", "=", 
+               RowBox[{"Dynamic", "[", 
+                RowBox[{
+                 RowBox[{"spdLinesG", "[", 
+                  RowBox[{
+                   RowBox[{"spdFindTangent", "[", 
+                    RowBox[{"equList", ",", "findTangentInput", ",", 
+                    RowBox[{"dom", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], ",", 
+                    RowBox[{"dom", "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], ",", 
+                    RowBox[{"dom", "[", 
+                    RowBox[{"[", "3", "]"}], "]"}]}], "]"}], ",", 
+                   "spdColourLine"}], "]"}], ",", 
+                 RowBox[{"TrackedSymbols", "\[RuleDelayed]", 
+                  RowBox[{"{", "findTangentInput", "}"}]}]}], "]"}]}], ";", 
+              "\n", 
+              RowBox[{"findNormal", "=", 
+               RowBox[{"Dynamic", "[", 
+                RowBox[{
+                 RowBox[{"spdLinesG", "[", 
+                  RowBox[{
+                   RowBox[{"spdFindNormal", "[", 
+                    RowBox[{"equList", ",", "findNormalInput", ",", 
+                    RowBox[{"dom", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], ",", 
+                    RowBox[{"dom", "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], ",", 
+                    RowBox[{"dom", "[", 
+                    RowBox[{"[", "3", "]"}], "]"}]}], "]"}], ",", 
+                   "spdColourLine"}], "]"}], ",", 
+                 RowBox[{"TrackedSymbols", "\[RuleDelayed]", 
+                  RowBox[{"{", "findNormalInput", "}"}]}]}], "]"}]}], ";", 
+              "\n", 
+              RowBox[{"asyHG", "=", 
+               RowBox[{"spdLinesG", "[", 
+                RowBox[{
+                 RowBox[{"spdAsyH", "[", 
+                  RowBox[{"equList", ",", 
+                   RowBox[{"dom", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], ",", 
+                   RowBox[{"dom", "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], ",", 
+                   RowBox[{"dom", "[", 
+                    RowBox[{"[", "3", "]"}], "]"}]}], "]"}], ",", 
+                 "spdColourLine"}], "]"}]}], ";", "\n", 
+              RowBox[{"asyVG", "=", 
+               RowBox[{"spdLinesG", "[", 
+                RowBox[{
+                 RowBox[{"spdAsyV", "[", 
+                  RowBox[{"equList", ",", 
+                   RowBox[{"dom", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], ",", 
+                   RowBox[{"dom", "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], ",", 
+                   RowBox[{"dom", "[", 
+                    RowBox[{"[", "3", "]"}], "]"}]}], "]"}], ",", 
+                 "spdColourLine"}], "]"}]}], ";", "\n", 
+              RowBox[{"asySG", "=", 
+               RowBox[{"spdLinesG", "[", 
+                RowBox[{
+                 RowBox[{"spdAsyS", "[", 
+                  RowBox[{"equList", ",", 
+                   RowBox[{"dom", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}]}], "]"}], ",", 
+                 "spdColourLine"}], "]"}]}], ";", "\n", 
+              RowBox[{"inverseG", "=", 
+               RowBox[{"spdPlotInverse", "[", 
+                RowBox[{"equ", ",", "dom", ",", "plotOptions"}], "]"}]}], ";",
+               "\n", 
+              RowBox[{"derivativeG", "=", 
+               RowBox[{"spdPlotDerivative", "[", 
+                RowBox[{"equ", ",", "dom", ",", "plotOptions"}], "]"}]}], ";",
+               "\n", 
+              RowBox[{"integrateG", "=", 
+               RowBox[{"spdPlotIntegrate", "[", 
+                RowBox[{"equ", ",", "dom", ",", "plotOptions"}], "]"}]}], 
+              ";"}]}], "\n", "}"}], "[", 
+           RowBox[{"[", "1", "]"}], "]"}], ",", "\n", 
+          RowBox[{"(*", 
+           RowBox[{"IMPORTANT", ",", " ", 
+            RowBox[{"must", " ", "save", " ", "definitions"}]}], "*)"}], "\n", 
+          RowBox[{"SaveDefinitions", "\[Rule]", "True"}]}], "]"}], "\n", 
+        "}"}], "[", 
+       RowBox[{"[", "1", "]"}], "]"}]}]}], ";"}]}]}]], "Code",
+ CellLabel->"In[7]:=",ExpressionUUID->"4bebdd59-0706-46f6-bc20-896976dbf28b"],
+
+Cell[CellGroupData[{
+
+Cell["Plan", "Title",ExpressionUUID->"f58bae28-8e20-42fa-a34c-9366775587a2"],
+
+Cell["\<\
+Functions:
+Find any X point on graph\t\t\tDone
+Find any Y point on graph\t\t\tDone
+Find points of intersection\t\t\tDone
+Find critical points\t\t\t\t\tDone
+Find asymptotes\t\t\t\t\tDone
+Compute points with tooltip \t\t\tDone
+Compute asymptotes with tooltip\t\tDone
+Plot all of this
+Show a list of graphics and delete last printed cell
+
+Goals:
+ParallelSubmit everything to emulate async computing. This should be faster.
+Keep everything in modules.
+spdPlot will be the master function where: equList, Dispatch rules and \
+everything else that is constant will be computed firsts
+
+Things to note:
+spdPlot is the only function that can take expressions not in a flattened list
+
+v12 Feedback
+Slow
+Manipulate looks too clunky
+
+Changes for v13.2
+Fix continuously calculations\tDone
+Rewrite manipulate\t\t\t\tDone
+Keep track of previous location for xPoint and yPoint\t\tDone?
+
+Changes for v13.3
+Change spdPlot modules to dynamic module to improve compatibility with \
+manipulate
+
+Goals for v14
+Set global variables for Font & Colours\t\tDone
+Write a spdShow function for dynamically showing FindX and FindY
+Failed. I changed DynamicModule to Module.
+I fixed something and now DynamicModule works?
+Print points and asymptotes if you press on it\tDone
+
+Goals for v14.1
+Change every Module to DynamicModule, so that everything is saved over \
+sessions.\tDone
+Rationalise equation list of spdPlot, so that every solution is in a slightly \
+nicer form.\tDone
+Maintain evaluations, even after session has closed.\tDone
+Support all plot rules.\tDone
+Replace lines with infinite lines.\tDone
+Remove spdPlot range and AxesLabel, as they are unnecessary now.\tDone
+
+Goals for v14.2
+Return of async (ParallelSubmit & WaitAll).\tDone
+Incremental printing.\tDone
+Disable incremental printing for Manipulate.
+
+v14.7 reflection
+Async is still slow (duh) so I reverted to sync parallel.
+Changed Manipulate to Incremental because Mathematica \
+doesn\[CloseCurlyQuote]t like it when you steal names of built-in functions. \
+At least it works as expected now.
+
+Goals for v16.1
+Keep track of equation for each point\tDone
+Give each point a gradient\tDone
+Fix the timeout issue when processing takes too long\tDone
+Set everything to sync, and made the dynamic inside plot to be async
+
+Goals for v16.2
+Make incremental better\tDone
+
+Goals for v16.3
+Open spdPlot in another Mathematica FrontEnd\t\tDone?
+You can open a new frontend now
+Increase DynamicEvaluationTimeout to infinity\tDone?
+It is 10 billion years, so yeah it may as well be infinity\[LineSeparator]
+Goals for v17
+FindAQuadratic\tDone
+FindACubic\tDone
+spdLinesG\tDone
+
+Goals for v17.1
+Find Normal\tDone
+Plot Inverse\tDone
+Label every plot equation\tDone?
+Incomplete, but close enough so I\[CloseCurlyQuote]m not fixing it
+Memorize everything
+Problem: Memoization doesn\[CloseCurlyQuote]t work with DynamicModule
+Fix: Just memoize the final value.
+
+Goals for v17.1.3
+Add derivatives\tDone
+Add integrals\t\tDone
+Add a way to change the default message\tDone
+Allocate better names for everything\tDone
+Write this script through a shortener (spdShortener)\tDone
+Set all unsaved variables.\
+\>", "Text",ExpressionUUID->"76c583e3-fda8-4a01-b51b-a1104282c2b2"]
+}, Open  ]]
+},
+ClosingSaveDialog->False,
+InitializationCellEvaluation->True,
+InitializationCellWarning->False,
+WindowSize->{1080., 642.75},
+WindowMargins->{{Automatic, -1086}, {-54, Automatic}},
+Magnification:>1.1 Inherited,
+FrontEndVersion->"13.1 for Microsoft Windows (64-bit) (August 22, 2022)",
+StyleDefinitions->"ReverseColor.nb",
+ExpressionUUID->"1a352bb9-21d7-441f-a327-656af6fb73f5"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 152, 3, 31, "Input",ExpressionUUID->"c645e0ce-eeff-4fd5-a4b1-4d8e3528e3fa"],
+Cell[713, 25, 113876, 2674, 12415, "Code",ExpressionUUID->"4bebdd59-0706-46f6-bc20-896976dbf28b"],
+Cell[CellGroupData[{
+Cell[114614, 2703, 76, 0, 107, "Title",ExpressionUUID->"f58bae28-8e20-42fa-a34c-9366775587a2"],
+Cell[114693, 2705, 3198, 97, 2524, "Text",ExpressionUUID->"76c583e3-fda8-4a01-b51b-a1104282c2b2"]
+}, Open  ]]
+}
+]
+*)
+
