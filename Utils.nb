@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     17607,        374]
-NotebookOptionsPosition[     16922,        355]
-NotebookOutlinePosition[     17332,        371]
-CellTagsIndexPosition[     17289,        368]
+NotebookDataLength[     15904,        342]
+NotebookOptionsPosition[     15317,        324]
+NotebookOutlinePosition[     15727,        340]
+CellTagsIndexPosition[     15684,        337]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -208,49 +208,48 @@ Cell[BoxData[
                      "]"}]}], "}"}]}], "]"}]}], "]"}]}]}]}], "\n", "        ",
            "]"}]}], "\n", "    ", "]"}]}]}], "\n", "]"}]}], "\n", "\n", 
    RowBox[{
-    RowBox[{"PlotF", "[", "equation_", "]"}], " ", ":=", " ", 
+    RowBox[{"PlotF", "[", 
+     RowBox[{"equation_", ",", " ", "pos_", ",", " ", "neg_"}], "]"}], " ", ":=",
+     " ", 
     RowBox[{"(", "\n", "\t", 
      RowBox[{
       RowBox[{
-       RowBox[{"plot", " ", "=", " ", 
-        RowBox[{"Plot", "[", 
-         RowBox[{"equation", ",", " ", 
-          RowBox[{"{", 
-           RowBox[{"x", ",", " ", "10", ",", " ", 
-            RowBox[{"-", "10"}]}], "}"}]}], "]"}]}], ";"}], "\n", "    ", 
-      RowBox[{"(*", " ", 
-       RowBox[{
-        RowBox[{"addMouseover", " ", "@", " ", "plot"}], ";"}], " ", "*)"}], 
-      ";", "\n", "\t", 
-      RowBox[{
-       RowBox[{
-       "Print", "[", 
-        "\"\<Click on the box -- this is for testing \
-\.af\\\\_(\:30c4)_/\.af\>\"", "]"}], "\n", "\t", 
-       RowBox[{"DynamicModule", "[", 
-        RowBox[{
+      "Print", "[", 
+       "\"\<Click on the box -- this is for testing \.af\\\\_(\:30c4)_/\.af\>\
+\"", "]"}], ";", "\n", "\t", 
+      RowBox[{"plot", " ", "=", " ", 
+       RowBox[{"Plot", "[", 
+        RowBox[{"equation", ",", " ", 
          RowBox[{"{", 
-          RowBox[{"list", " ", "=", " ", 
-           RowBox[{"{", "}"}]}], "}"}], ",", " ", "\n", "\t ", 
-         RowBox[{"EventHandler", "[", "\n", "\t  ", 
-          RowBox[{
-           RowBox[{"Dynamic", "[", 
-            RowBox[{"Framed", "@", "\n", "\t    ", 
-             RowBox[{"Graphics", "[", 
-              RowBox[{
-               RowBox[{"{", 
-                RowBox[{"Red", ",", " ", 
-                 RowBox[{"Line", "[", "list", "]"}], ",", " ", 
-                 RowBox[{"Point", "[", "list", "]"}]}], "}"}], ",", " ", "\n",
-                "\t     ", 
-               RowBox[{"PlotRange", " ", "->", " ", "2"}]}], "]"}]}], "]"}], 
-           ",", " ", 
-           RowBox[{"{", 
-            RowBox[{"\"\<MouseClicked\>\"", " ", ":>", " ", "\n", "\t    ", 
-             RowBox[{"AppendTo", "[", 
-              RowBox[{"list", ",", " ", 
-               RowBox[{"MousePosition", "[", "\"\<Graphics\>\"", "]"}]}], 
-              "]"}]}], "\n", "\t    ", "}"}]}], "]"}]}], "]"}]}]}], "\n", 
+          RowBox[{"x", ",", " ", "pos", ",", " ", "neg"}], "}"}]}], "]"}]}], 
+      ";", "\n", "    ", 
+      RowBox[{"addMouseover", " ", "@", " ", "plot"}], ";"}], "\n", "\t", 
+     "\n", "\t", 
+     RowBox[{"(*", 
+      RowBox[{"DynamicModule", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"list", " ", "=", " ", 
+          RowBox[{"{", "}"}]}], "}"}], ",", "\n", "\t ", 
+        RowBox[{"EventHandler", "[", "\n", "\t  ", 
+         RowBox[{
+          RowBox[{"Dynamic", "[", 
+           RowBox[{"plot", " ", "@", "\n", "\t    ", 
+            RowBox[{"Graphics", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{"Red", ",", " ", 
+                RowBox[{"Line", "[", "list", "]"}], ",", " ", 
+                RowBox[{"Point", "[", "list", "]"}]}], "}"}], ",", " ", "\n", 
+              "\t     ", 
+              RowBox[{"PlotRange", " ", "->", " ", "2"}]}], "]"}]}], "]"}], 
+          ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"\"\<MouseClicked\>\"", " ", ":>", " ", "\n", "\t    ", 
+            RowBox[{"AppendTo", "[", 
+             RowBox[{"list", ",", " ", 
+              RowBox[{"MousePosition", "[", "\"\<Graphics\>\"", "]"}]}], 
+             "]"}]}], "\n", "\t    ", "}"}]}], "]"}]}], "]"}], "*)"}], "\n", 
      ")"}]}]}]}]], "Code",
  CellChangeTimes->{
   3.877320962024328*^9, {3.877320993853486*^9, 3.8773210350883527`*^9}, {
@@ -291,14 +290,18 @@ Cell[BoxData[
    3.879919354366296*^9, 3.879919456724097*^9}, {3.879919528840702*^9, 
    3.879919596736832*^9}, {3.8799197428505783`*^9, 3.879919746032708*^9}, 
    3.879919792343549*^9, 3.8799198443747535`*^9, {3.8799198763948727`*^9, 
-   3.8799200581265106`*^9}},
- CellLabel->"In[70]:=",ExpressionUUID->"120a1e73-496e-4962-916f-278df1b1523c"],
+   3.8799200581265106`*^9}, {3.8799720823153534`*^9, 3.8799720852963047`*^9}, 
+   3.879972677846283*^9, 3.879977245101295*^9, {3.879987091207876*^9, 
+   3.8799870935982585`*^9}, {3.879987200195943*^9, 3.8799873308241014`*^9}},
+ CellLabel->"In[43]:=",ExpressionUUID->"120a1e73-496e-4962-916f-278df1b1523c"],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"PlotF", "[", 
-  RowBox[{"x", "^", "2"}], "]"}]], "Input",
+  RowBox[{
+   RowBox[{"Sin", "[", "x", "]"}], ",", " ", "10", ",", " ", 
+   RowBox[{"-", "10"}]}], "]"}]], "Input",
  CellChangeTimes->{{3.879221793436017*^9, 3.8792217957666707`*^9}, {
   3.8792219729058785`*^9, 3.879221975675107*^9}, {3.879222011693537*^9, 
   3.879222015004093*^9}, {3.8792220731819887`*^9, 3.8792221289325867`*^9}, {
@@ -307,50 +310,16 @@ Cell[BoxData[
   3.8793529337651443`*^9, 3.879352973595561*^9}, {3.8793560775661125`*^9, 
   3.8793560795735984`*^9}, {3.8793562695230093`*^9, 3.879356270324382*^9}, {
   3.879357198615178*^9, 3.8793572006923013`*^9}, {3.8799187259080048`*^9, 
-  3.879918729910445*^9}},
- CellLabel->"In[73]:=",ExpressionUUID->"de2bf7f7-92e9-4d81-8ac3-14e06d614ea6"],
+  3.879918729910445*^9}, {3.8799872432282815`*^9, 3.8799872467230225`*^9}, {
+  3.8799873416329584`*^9, 3.87998734305507*^9}},
+ CellLabel->"In[48]:=",ExpressionUUID->"de2bf7f7-92e9-4d81-8ac3-14e06d614ea6"],
 
 Cell[BoxData["\<\"Click on the box -- this is for testing \.af\\\\_(\:30c4)_/\
 \.af\"\>"], "Print",
- CellChangeTimes->{3.8799200249567013`*^9, 3.8799200635402527`*^9},
+ CellChangeTimes->{{3.8799872976927743`*^9, 3.8799873447250338`*^9}},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"6225f24f-55d1-4e66-b57a-ba1fd2d540d2"],
-
-Cell[BoxData[
- RowBox[{"Null", " ", 
-  DynamicModuleBox[{$CellContext`list$$ = {{
-   0.8343297706709967, -0.14652777777777778`}, {-0.5656702293290032, 
-   1.1534722222222225`}, {-0.6656702293290031, 
-   1.2534722222222223`}, {-1.2656702293290032`, -0.14652777777777778`}, \
-{-1.2323368959956698`, -0.4131944444444445}, {-1.2323368959956698`, \
--0.4131944444444445}, {-1.0990035626623365`, -0.7131944444444445}, \
-{-0.6990035626623365, -0.9798611111111112}, {
-   1.6009964373376637`, -0.7798611111111111}, {
-   1.634329770670997, -0.7465277777777778}}}, 
-   TagBox[
-    DynamicBox[ToBoxes[
-      Framed[
-       Graphics[{Red, 
-         Line[$CellContext`list$$], 
-         Point[$CellContext`list$$]}, PlotRange -> 2]], StandardForm],
-     ImageSizeCache->{100., {47.134033098001964`, 52.865966901998036`}}],
-    EventHandlerTag[{"MouseClicked" :> AppendTo[$CellContext`list$$, 
-        MousePosition["Graphics"]], Method -> "Preemptive", PassEventsDown -> 
-      Automatic, PassEventsUp -> True}]],
-   DynamicModuleValues:>{}]}]], "Output",
- CellChangeTimes->{{3.8793560730248604`*^9, 3.879356081865306*^9}, 
-   3.8793562719143157`*^9, 3.879356322623905*^9, {3.879356675755845*^9, 
-   3.879356690316315*^9}, 3.8793570479276605`*^9, 3.87935714487138*^9, {
-   3.8793571817951827`*^9, 3.8793572216270914`*^9}, 3.8793584234982967`*^9, {
-   3.8793611591578236`*^9, 3.8793611711312666`*^9}, {3.8793616860138874`*^9, 
-   3.8793617530033455`*^9}, {3.8793617886379275`*^9, 3.879361803931134*^9}, 
-   3.8799172677632313`*^9, 3.8799176259092293`*^9, {3.8799178107790008`*^9, 
-   3.8799178395552883`*^9}, {3.8799187181633587`*^9, 3.8799187318493657`*^9}, 
-   3.8799192577846575`*^9, {3.8799194621380005`*^9, 3.8799194734376383`*^9}, {
-   3.879919781667289*^9, 3.879919806156245*^9}, 3.8799199084408646`*^9, 
-   3.8799200249696455`*^9, 3.879920063543285*^9},
- CellLabel->"Out[73]=",ExpressionUUID->"d8579468-4952-47b8-9a89-ea62a2850f76"]
+In[48]:=",ExpressionUUID->"0eb0f12c-afdc-4cd2-8a0d-5f0dba6ea97f"]
 }, Open  ]]
 },
 WindowSize->{1440., 777.75},
@@ -370,11 +339,10 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 13335, 274, 1262, "Code",ExpressionUUID->"120a1e73-496e-4962-916f-278df1b1523c"],
+Cell[558, 20, 13483, 275, 1280, "Code",ExpressionUUID->"120a1e73-496e-4962-916f-278df1b1523c"],
 Cell[CellGroupData[{
-Cell[13918, 298, 786, 12, 28, "Input",ExpressionUUID->"de2bf7f7-92e9-4d81-8ac3-14e06d614ea6"],
-Cell[14707, 312, 272, 5, 22, "Print",ExpressionUUID->"6225f24f-55d1-4e66-b57a-ba1fd2d540d2"],
-Cell[14982, 319, 1924, 33, 119, "Output",ExpressionUUID->"d8579468-4952-47b8-9a89-ea62a2850f76"]
+Cell[14066, 299, 958, 15, 28, "Input",ExpressionUUID->"de2bf7f7-92e9-4d81-8ac3-14e06d614ea6"],
+Cell[15027, 316, 274, 5, 22, "Print",ExpressionUUID->"0eb0f12c-afdc-4cd2-8a0d-5f0dba6ea97f"]
 }, Open  ]]
 }
 ]
