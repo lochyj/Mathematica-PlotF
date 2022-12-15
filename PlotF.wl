@@ -54,11 +54,64 @@ LabelIntercepts[expr_] :=
 
 
 PlotFn[expr_] :=
-        Module[ {max, min, graph},
-            max = 10;
-            min = -10;
-            LabelIntercepts[expr];
-            Print[expr];
-            
+        DynamicModule[ {max = 10, min = -10, graphic, Axisx = True, Axisy = True},
+            (* The actual GUI *)
+    
+            (* The actual GUI *)
+            graphic = Grid[
+                {
+                    (* Main Options *)
+                    {
+                        Row[{
+                            Text["Hello"]
+                        }],
+                        Row[{
+                            Text["Hello"]
+                        }],
+                        Row[{
+                            Text["Hello"]
+                        }]
+                    },
+
+                    (* Graph and other stuff *)
+                    {
+                        Row[{
+                            Text["Hello"]
+                        }],
+                        Plot[expr, {x, 10, -10}, Background -> LightBlue, PlotStyle -> {Black, Thickness -> 0.5}]
+                    },
+
+                    (* Axis options and credits *)
+                    {
+                        Row[{
+                                
+                        }],
+                        Row[{
+                            Text["Enable / Disable Axis"],
+                        }]
+                    },
+                    {
+                        Row[{
+                                
+                        }],
+                        Row[{
+                            Checkbox[Dynamic[Axisx]], Text[" X: "], Dynamic[Axisx]
+                        }],
+                        Row[{
+                            Checkbox[Dynamic[Axisy]], Text[" Y: "], Dynamic[Axisy]
+                        }]
+                    },
+                    {
+                        Row[{
+
+                        }],
+                        Row[{
+                            Text["Made by Lachlan Jowett 2022 - WOOD7"]
+                        }]
+                    }
+                }
+            ];
+
+            Print[graphic];
         ]
 
