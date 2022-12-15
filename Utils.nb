@@ -10,247 +10,19 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     15904,        342]
-NotebookOptionsPosition[     15317,        324]
-NotebookOutlinePosition[     15727,        340]
-CellTagsIndexPosition[     15684,        337]
+NotebookDataLength[     13384,        344]
+NotebookOptionsPosition[     12478,        321]
+NotebookOutlinePosition[     12892,        337]
+CellTagsIndexPosition[     12849,        334]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
+
+Cell[CellGroupData[{
 Cell[BoxData[
- RowBox[{
-  RowBox[{"(*", " ", 
-   RowBox[{
-   "This", " ", "is", " ", "a", " ", "*", "small", " ", "utility", " ", 
-    "program", " ", "for", " ", "Mathematica", "  ", "*", " ", "Small", " ", 
-    "for", " ", "now"}], " ", "*)"}], "\n", "\n", 
-  RowBox[{"(*", " ", "\n", " ", 
-   RowBox[{
-    RowBox[{
-    "*", " ", "Credit", " ", "for", " ", "this", " ", "very", " ", "nice", 
-     " ", 
-     RowBox[{"function", ":", " ", "\n", " ", 
-      RowBox[{"*", " ", "Carl", " ", "Woll", " ", "at", " ", "https"}], 
-      ":"}]}], "//", 
-    RowBox[{
-     RowBox[{
-      RowBox[{
-       RowBox[{
-        RowBox[{"mathematica", ".", "stackexchange", ".", "com"}], "/", 
-        "questions"}], "/", "156708"}], "/", "how"}], "-", "can", "-", "i", 
-     "-", "get", "-", "a", "-", "plot", "-", "to", "-", "display", "-", 
-     "coordinates", "-", "when", "-", "the", "-", "mouse", "-", "cursor", "-",
-      "is", "-", "on", "-", "the", "-", "curv"}]}], "\n", " ", "*)"}], "\n", 
-  RowBox[{
-   RowBox[{
-    RowBox[{"addMouseover", "[", "g_Graphics", "]"}], " ", ":=", " ", "\n", 
-    RowBox[{"Module", "[", 
-     RowBox[{
-      RowBox[{"{", 
-       RowBox[{"lines", ",", " ", "pts"}], "}"}], ",", "\n", "    ", 
-      RowBox[{
-       RowBox[{"lines", " ", "=", " ", 
-        RowBox[{"Cases", "[", 
-         RowBox[{
-          RowBox[{
-           RowBox[{"Normal", "[", "g", "]"}], "[", 
-           RowBox[{"[", "1", "]"}], "]"}], ",", " ", "_Line", ",", " ", 
-          "Infinity"}], "]"}]}], ";", "\n", "    ", 
-       RowBox[{"If", "[", 
-        RowBox[{
-         RowBox[{"lines", "===", 
-          RowBox[{"{", "}"}]}], ",", " ", 
-         RowBox[{"Return", "[", "g", "]"}]}], "]"}], ";", "\n", "    ", 
-       RowBox[{"pts", " ", "=", " ", 
-        RowBox[{"Catenate", " ", "@", " ", 
-         RowBox[{"lines", "[", 
-          RowBox[{"[", 
-           RowBox[{"All", ",", " ", "1"}], "]"}], "]"}]}]}], ";", "\n", 
-       "    ", 
-       RowBox[{"With", "[", 
-        RowBox[{
-         RowBox[{"{", 
-          RowBox[{"nf", " ", "=", " ", 
-           RowBox[{"Nearest", "[", "pts", "]"}]}], "}"}], ",", "\n", 
-         "        ", 
-         RowBox[{"Show", "[", "\n", "            ", 
-          RowBox[{"g", ",", "\n", "            ", 
-           RowBox[{"Epilog", " ", "->", " ", 
-            RowBox[{"Dynamic", " ", "@", " ", 
-             RowBox[{"DynamicModule", "[", "\n", "                ", 
-              RowBox[{
-               RowBox[{"{", "\n", "                ", 
-                RowBox[{
-                 RowBox[{"pt", " ", "=", " ", 
-                  RowBox[{"nf", "[", 
-                   RowBox[{"MousePosition", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"\"\<Graphics\>\"", ",", " ", "Graphics"}], "}"}],
-                     ",", " ", 
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0"}], "}"}]}], "]"}], "]"}]}], ",", 
-                 "\n", "                ", 
-                 RowBox[{"scaled", " ", "=", " ", 
-                  RowBox[{"MousePosition", "[", 
-                   RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"\"\<GraphicsScaled\>\"", ",", " ", "Graphics"}], 
-                    "}"}], ",", " ", "None"}], "]"}]}]}], "\n", 
-                "                ", "}"}], ",", "\n", "                ", 
-               RowBox[{"If", "[", 
-                RowBox[{
-                 RowBox[{"scaled", " ", "===", " ", "None"}], ",", "\n", 
-                 "                    ", 
-                 RowBox[{"{", "}"}], ",", "\n", "                    ", 
-                 RowBox[{"{", "\n", "                        ", 
-                  RowBox[{
-                   RowBox[{"Text", "[", "\n", "                            ", 
-                    RowBox[{
-                    RowBox[{
-                    "Framed", "[", "\n", "                                ", 
-                    RowBox[{
-                    RowBox[{"Row", "[", 
-                    RowBox[{
-                    RowBox[{"Round", "[", 
-                    RowBox[{
-                    RowBox[{"pt", "[", 
-                    RowBox[{"[", "1", "]"}], "]"}], ",", " ", "0.1"}], "]"}], 
-                    ",", " ", "\"\<,\>\""}], "]"}], ",", "\n", 
-                    "                                ", 
-                    RowBox[{"Background", "->", "LightBlue"}], ",", "\n", 
-                    "                                ", 
-                    RowBox[{"RoundingRadius", "->", "7"}]}], "\n", 
-                    "                            ", "]"}], ",", "\n", 
-                    "                            ", 
-                    RowBox[{"Round", "[", 
-                    RowBox[{
-                    RowBox[{"pt", "[", 
-                    RowBox[{"[", "1", "]"}], "]"}], ",", " ", "0.1"}], "]"}], 
-                    ",", "\n", "                            ", 
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"1.2", " ", 
-                    RowBox[{"Sign", "[", 
-                    RowBox[{
-                    RowBox[{"scaled", "[", 
-                    RowBox[{"[", "1", "]"}], "]"}], "-", ".5"}], "]"}]}], ",",
-                     " ", "0"}], "}"}]}], "\n", "                        ", 
-                    "]"}], ",", "\n", "                        ", 
-                   RowBox[{"AbsolutePointSize", "[", "7", "]"}], ",", " ", 
-                   RowBox[{"Point", "[", "pt", "]"}], ",", "\n", 
-                   "                        ", "LightBlue", ",", " ", 
-                   RowBox[{"AbsolutePointSize", "[", "5", "]"}], ",", " ", 
-                   RowBox[{"Point", "[", "pt", "]"}]}], "\n", 
-                  "                    ", "}"}]}], "\n", "                ", 
-                "]"}]}], "\n", "            ", "]"}]}]}]}], "\n", "        ", 
-          "]"}]}], "\n", "    ", "]"}]}]}], "\n", "]"}]}], "\n", "\n", 
-   RowBox[{
-    RowBox[{"addMouseclick", "[", "g_Graphics", "]"}], " ", ":=", " ", "\n", 
-    RowBox[{"Module", "[", 
-     RowBox[{
-      RowBox[{"{", 
-       RowBox[{"lines", ",", " ", "pts"}], "}"}], ",", "\n", "    ", 
-      RowBox[{
-       RowBox[{"lines", " ", "=", " ", 
-        RowBox[{"Cases", "[", 
-         RowBox[{
-          RowBox[{
-           RowBox[{"Normal", "[", "g", "]"}], "[", 
-           RowBox[{"[", "1", "]"}], "]"}], ",", " ", "_Line", ",", " ", 
-          "Infinity"}], "]"}]}], ";", "\n", "    ", 
-       RowBox[{"If", "[", 
-        RowBox[{
-         RowBox[{"lines", "===", 
-          RowBox[{"{", "}"}]}], ",", " ", 
-         RowBox[{"Return", "[", "g", "]"}]}], "]"}], ";", "\n", "    ", 
-       RowBox[{"pts", " ", "=", " ", 
-        RowBox[{"Catenate", " ", "@", " ", 
-         RowBox[{"lines", "[", 
-          RowBox[{"[", 
-           RowBox[{"All", ",", " ", "1"}], "]"}], "]"}]}]}], ";", "\n", 
-       "    ", 
-       RowBox[{"With", "[", 
-        RowBox[{
-         RowBox[{"{", 
-          RowBox[{"nf", " ", "=", " ", 
-           RowBox[{"Nearest", "[", "pts", "]"}]}], "}"}], ",", "\n", 
-         "        ", 
-         RowBox[{"Show", "[", "\n", "            ", 
-          RowBox[{"g", ",", "\n", "            ", 
-           RowBox[{"Epilog", " ", "->", " ", 
-            RowBox[{"Dynamic", " ", "@", " ", 
-             RowBox[{"DynamicModule", "[", 
-              RowBox[{
-               RowBox[{"{", 
-                RowBox[{"list", " ", "=", " ", 
-                 RowBox[{"{", "}"}]}], "}"}], ",", " ", "\n", "\t\t\t ", 
-               RowBox[{"EventHandler", "[", "\n", "\t\t\t  ", 
-                RowBox[{
-                 RowBox[{"Dynamic", "[", 
-                  RowBox[{"g", "@", "\n", "\t\t\t    ", 
-                   RowBox[{"Graphics", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"Red", ",", " ", 
-                    RowBox[{"Line", "[", "list", "]"}], ",", " ", 
-                    RowBox[{"Point", "[", "list", "]"}]}], "}"}], ",", " ", 
-                    "\n", "\t\t\t     ", 
-                    RowBox[{"PlotRange", " ", "->", " ", "2"}]}], "]"}]}], 
-                  "]"}], ",", " ", 
-                 RowBox[{"{", 
-                  RowBox[{
-                  "\"\<MouseClicked\>\"", " ", ":>", " ", "\n", "\t\t\t    ", 
-                   RowBox[{"AppendTo", "[", 
-                    RowBox[{"list", ",", " ", 
-                    RowBox[{"MousePosition", "[", "\"\<Graphics\>\"", "]"}]}],
-                     "]"}]}], "}"}]}], "]"}]}], "]"}]}]}]}], "\n", "        ",
-           "]"}]}], "\n", "    ", "]"}]}]}], "\n", "]"}]}], "\n", "\n", 
-   RowBox[{
-    RowBox[{"PlotF", "[", 
-     RowBox[{"equation_", ",", " ", "pos_", ",", " ", "neg_"}], "]"}], " ", ":=",
-     " ", 
-    RowBox[{"(", "\n", "\t", 
-     RowBox[{
-      RowBox[{
-      "Print", "[", 
-       "\"\<Click on the box -- this is for testing \.af\\\\_(\:30c4)_/\.af\>\
-\"", "]"}], ";", "\n", "\t", 
-      RowBox[{"plot", " ", "=", " ", 
-       RowBox[{"Plot", "[", 
-        RowBox[{"equation", ",", " ", 
-         RowBox[{"{", 
-          RowBox[{"x", ",", " ", "pos", ",", " ", "neg"}], "}"}]}], "]"}]}], 
-      ";", "\n", "    ", 
-      RowBox[{"addMouseover", " ", "@", " ", "plot"}], ";"}], "\n", "\t", 
-     "\n", "\t", 
-     RowBox[{"(*", 
-      RowBox[{"DynamicModule", "[", 
-       RowBox[{
-        RowBox[{"{", 
-         RowBox[{"list", " ", "=", " ", 
-          RowBox[{"{", "}"}]}], "}"}], ",", "\n", "\t ", 
-        RowBox[{"EventHandler", "[", "\n", "\t  ", 
-         RowBox[{
-          RowBox[{"Dynamic", "[", 
-           RowBox[{"plot", " ", "@", "\n", "\t    ", 
-            RowBox[{"Graphics", "[", 
-             RowBox[{
-              RowBox[{"{", 
-               RowBox[{"Red", ",", " ", 
-                RowBox[{"Line", "[", "list", "]"}], ",", " ", 
-                RowBox[{"Point", "[", "list", "]"}]}], "}"}], ",", " ", "\n", 
-              "\t     ", 
-              RowBox[{"PlotRange", " ", "->", " ", "2"}]}], "]"}]}], "]"}], 
-          ",", " ", 
-          RowBox[{"{", 
-           RowBox[{"\"\<MouseClicked\>\"", " ", ":>", " ", "\n", "\t    ", 
-            RowBox[{"AppendTo", "[", 
-             RowBox[{"list", ",", " ", 
-              RowBox[{"MousePosition", "[", "\"\<Graphics\>\"", "]"}]}], 
-             "]"}]}], "\n", "\t    ", "}"}]}], "]"}]}], "]"}], "*)"}], "\n", 
-     ")"}]}]}]}]], "Code",
+ RowBox[{"PlotFn", "[", 
+  RowBox[{"x", "^", "2"}], "]"}]], "Code",
  CellChangeTimes->{
   3.877320962024328*^9, {3.877320993853486*^9, 3.8773210350883527`*^9}, {
    3.8773210841831036`*^9, 3.8773210847629013`*^9}, {3.879221365272833*^9, 
@@ -292,38 +64,263 @@ Cell[BoxData[
    3.879919792343549*^9, 3.8799198443747535`*^9, {3.8799198763948727`*^9, 
    3.8799200581265106`*^9}, {3.8799720823153534`*^9, 3.8799720852963047`*^9}, 
    3.879972677846283*^9, 3.879977245101295*^9, {3.879987091207876*^9, 
-   3.8799870935982585`*^9}, {3.879987200195943*^9, 3.8799873308241014`*^9}},
- CellLabel->"In[43]:=",ExpressionUUID->"120a1e73-496e-4962-916f-278df1b1523c"],
+   3.8799870935982585`*^9}, {3.879987200195943*^9, 3.8799873308241014`*^9}, {
+   3.8800639624376745`*^9, 3.8800639716188316`*^9}},
+ CellLabel->
+  "In[259]:=",ExpressionUUID->"120a1e73-496e-4962-916f-278df1b1523c"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     TemplateBox[{
+       InterpretationBox[
+        Cell[
+         BoxData[
+          FormBox["\"Hello\"", TextForm]], "InlineText"], 
+        Text["Hello"]]},
+      "RowDefault"], 
+     TemplateBox[{
+       InterpretationBox[
+        Cell[
+         BoxData[
+          FormBox["\"Hello\"", TextForm]], "InlineText"], 
+        Text["Hello"]]},
+      "RowDefault"], 
+     TemplateBox[{
+       InterpretationBox[
+        Cell[
+         BoxData[
+          FormBox["\"Hello\"", TextForm]], "InlineText"], 
+        Text["Hello"]]},
+      "RowDefault"]},
+    {
+     TemplateBox[{
+       InterpretationBox[
+        Cell[
+         BoxData[
+          FormBox["\"Hello\"", TextForm]], "InlineText"], 
+        Text["Hello"]]},
+      "RowDefault"], 
+     GraphicsBox[{{}, {}},
+      AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+      Axes->{True, True},
+      AxesLabel->{None, None},
+      AxesOrigin->{0, 0},
+      Background->RGBColor[0.87, 0.94, 1],
+      DisplayFunction->Identity,
+      Frame->{{False, False}, {False, False}},
+      FrameLabel->{{None, None}, {None, None}},
+      FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+      GridLines->{None, None},
+      GridLinesStyle->Directive[
+        GrayLevel[0.5, 0.4]],
+      ImagePadding->All,
+      Method->{
+       "DefaultBoundaryStyle" -> Automatic, 
+        "DefaultGraphicsInteraction" -> {
+         "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+          "Effects" -> {
+           "Highlight" -> {"ratio" -> 2}, "HighlightPoint" -> {"ratio" -> 2}, 
+            "Droplines" -> {
+             "freeformCursorMode" -> True, 
+              "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+        "DefaultMeshStyle" -> AbsolutePointSize[6], "ScalingFunctions" -> 
+        None, "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+            (Identity[#]& )[
+             Part[#, 1]], 
+            (Identity[#]& )[
+             Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+            (Identity[#]& )[
+             Part[#, 1]], 
+            (Identity[#]& )[
+             Part[#, 2]]}& )}},
+      PlotRange->{{-10, 10}, {0., 0.}},
+      PlotRangeClipping->True,
+      PlotRangePadding->{{
+         Scaled[0.02], 
+         Scaled[0.02]}, {
+         Scaled[0.05], 
+         Scaled[0.05]}},
+      Ticks->{Automatic, Automatic}], ""},
+    {
+     TemplateBox[{},
+      "RowDefault"], 
+     TemplateBox[{
+       InterpretationBox[
+        Cell[
+         BoxData[
+          FormBox["\"Enable / Disable Axis\"", TextForm]], "InlineText"], 
+        Text["Enable / Disable Axis"]], ""},
+      "RowDefault"], ""},
+    {
+     TemplateBox[{},
+      "RowDefault"], 
+     TemplateBox[{
+       CheckboxBox[
+        Dynamic[$CellContext`Axisx$20987]], 
+       InterpretationBox[
+        Cell[
+         BoxData[
+          FormBox["\" X: \"", TextForm]], "InlineText"], 
+        Text[" X: "]], 
+       DynamicBox[
+        ToBoxes[$CellContext`Axisx$20987, StandardForm]]},
+      "RowDefault"], 
+     TemplateBox[{
+       CheckboxBox[
+        Dynamic[$CellContext`Axisy$20987]], 
+       InterpretationBox[
+        Cell[
+         BoxData[
+          FormBox["\" Y: \"", TextForm]], "InlineText"], 
+        Text[" Y: "]], 
+       DynamicBox[
+        ToBoxes[$CellContext`Axisy$20987, StandardForm]]},
+      "RowDefault"]},
+    {
+     TemplateBox[{},
+      "RowDefault"], 
+     TemplateBox[{
+       InterpretationBox[
+        Cell[
+         BoxData[
+          FormBox["\"Made by Lachlan Jowett 2022 - WOOD7\"", TextForm]], 
+         "InlineText"], 
+        Text["Made by Lachlan Jowett 2022 - WOOD7"]]},
+      "RowDefault"], ""}
+   },
+   AutoDelete->False,
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Print",
+ CellChangeTimes->{{3.8800673352185445`*^9, 3.8800673577756495`*^9}, {
+   3.8800674061110554`*^9, 3.8800674293836946`*^9}, {3.880068068938978*^9, 
+   3.880068235854997*^9}, {3.8800689217635393`*^9, 3.880068923383574*^9}, 
+   3.8800689826008425`*^9, 3.880069021242687*^9},
+ CellLabel->
+  "During evaluation of \
+In[259]:=",ExpressionUUID->"8070c088-44db-42a1-8402-96d52ab6d2eb"],
+
+Cell[BoxData[
+ DynamicModuleBox[{$CellContext`max$$ = 
+  10, $CellContext`min$$ = -10, $CellContext`graphic$$ = Grid[{{
+     Row[{
+       Text["Hello"]}], 
+     Row[{
+       Text["Hello"]}], 
+     Row[{
+       Text["Hello"]}]}, {
+     Row[{
+       Text["Hello"]}], 
+     Graphics[{{}, {}}, {
+      DisplayFunction -> Identity, Ticks -> {Automatic, Automatic}, 
+       AxesOrigin -> {0, 0}, 
+       FrameTicks -> {{Automatic, Automatic}, {Automatic, Automatic}}, 
+       GridLines -> {None, None}, DisplayFunction -> Identity, 
+       PlotRangePadding -> {{
+          Scaled[0.02], 
+          Scaled[0.02]}, {
+          Scaled[0.05], 
+          Scaled[0.05]}}, PlotRangeClipping -> True, ImagePadding -> All, 
+       DisplayFunction -> Identity, AspectRatio -> GoldenRatio^(-1), 
+       Axes -> {True, True}, AxesLabel -> {None, None}, AxesOrigin -> {0, 0}, 
+       Background -> RGBColor[0.87, 0.94, 1], DisplayFunction :> Identity, 
+       Frame -> {{False, False}, {False, False}}, 
+       FrameLabel -> {{None, None}, {None, None}}, 
+       FrameTicks -> {{Automatic, Automatic}, {Automatic, Automatic}}, 
+       GridLines -> {None, None}, GridLinesStyle -> Directive[
+         GrayLevel[0.5, 0.4]], 
+       Method -> {
+        "DefaultBoundaryStyle" -> Automatic, 
+         "DefaultGraphicsInteraction" -> {
+          "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+           "Effects" -> {
+            "Highlight" -> {"ratio" -> 2}, "HighlightPoint" -> {"ratio" -> 2},
+              "Droplines" -> {
+              "freeformCursorMode" -> True, 
+               "placement" -> {"x" -> "All", "y" -> "None"}}}}, 
+         "DefaultMeshStyle" -> AbsolutePointSize[6], "ScalingFunctions" -> 
+         None, "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+             (Identity[#]& )[
+              Part[#, 1]], 
+             (Identity[#]& )[
+              Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+             (Identity[#]& )[
+              Part[#, 1]], 
+             (Identity[#]& )[
+              Part[#, 2]]}& )}}, PlotRange -> {{-10, 10}, {0., 0.}}, 
+       PlotRangeClipping -> True, PlotRangePadding -> {{
+          Scaled[0.02], 
+          Scaled[0.02]}, {
+          Scaled[0.02], 
+          Scaled[0.02]}}, Ticks -> {Automatic, Automatic}}]}, {
+     Row[{}], 
+     Row[{
+       Text["Enable / Disable Axis"], Null}]}, {
+     Row[{}], 
+     Row[{
+       Checkbox[
+        Dynamic[$CellContext`Axisx$$]], 
+       Text[" X: "], 
+       Dynamic[$CellContext`Axisx$$]}], 
+     Row[{
+       Checkbox[
+        Dynamic[$CellContext`Axisy$$]], 
+       Text[" Y: "], 
+       Dynamic[$CellContext`Axisy$$]}]}, {
+     Row[{}], 
+     Row[{
+       Text[
+       "Made by Lachlan Jowett 2022 - WOOD7"]}]}}], $CellContext`Axisx$$ = 
+  True, $CellContext`Axisy$$ = True}, "Null",
+  DynamicModuleValues:>{}]], "Output",
+ CellChangeTimes->{
+  3.8800669476274405`*^9, 3.8800672264200845`*^9, 3.880067283640441*^9, {
+   3.8800673213125725`*^9, 3.880067357789649*^9}, {3.880067406139056*^9, 
+   3.880067423921169*^9}, {3.8800681006726284`*^9, 3.88006815095*^9}, {
+   3.880068185911584*^9, 3.8800682217356615`*^9}, 3.880068982625909*^9, 
+   3.8800690212606564`*^9},
+ CellLabel->
+  "Out[259]=",ExpressionUUID->"82a70225-8b66-44a8-b654-c30414a3c76e"]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.8800655856837034`*^9, 3.8800656088436317`*^9}, {
+  3.8800656451076293`*^9, 
+  3.8800656504251127`*^9}},ExpressionUUID->"c7c1d670-e959-4c2d-8490-\
+82781eae5805"],
 
 Cell[CellGroupData[{
 
-Cell[BoxData[
- RowBox[{"PlotF", "[", 
+Cell[BoxData[{
+ RowBox[{
   RowBox[{
-   RowBox[{"Sin", "[", "x", "]"}], ",", " ", "10", ",", " ", 
-   RowBox[{"-", "10"}]}], "]"}]], "Input",
- CellChangeTimes->{{3.879221793436017*^9, 3.8792217957666707`*^9}, {
-  3.8792219729058785`*^9, 3.879221975675107*^9}, {3.879222011693537*^9, 
-  3.879222015004093*^9}, {3.8792220731819887`*^9, 3.8792221289325867`*^9}, {
-  3.879311838807499*^9, 3.8793119392264576`*^9}, {3.8793119839695573`*^9, 
-  3.8793120645716515`*^9}, {3.8793528564957666`*^9, 3.8793528567150106`*^9}, {
-  3.8793529337651443`*^9, 3.879352973595561*^9}, {3.8793560775661125`*^9, 
-  3.8793560795735984`*^9}, {3.8793562695230093`*^9, 3.879356270324382*^9}, {
-  3.879357198615178*^9, 3.8793572006923013`*^9}, {3.8799187259080048`*^9, 
-  3.879918729910445*^9}, {3.8799872432282815`*^9, 3.8799872467230225`*^9}, {
-  3.8799873416329584`*^9, 3.87998734305507*^9}},
- CellLabel->"In[48]:=",ExpressionUUID->"de2bf7f7-92e9-4d81-8ac3-14e06d614ea6"],
+   RowBox[{"xa", " ", "=", " ", "true"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", 
+   RowBox[{"Checkbox", "[", 
+    RowBox[{
+     RowBox[{"Dynamic", "[", "xa", "]"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"\"\<XAxis\>\"", ",", "\"\<XAxis\>\""}], "}"}]}], "]"}], "]"}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.880065916437772*^9, 3.880065965133177*^9}, {
+  3.880066473085656*^9, 3.880066527063487*^9}, {3.8800689559876823`*^9, 
+  3.880068963255737*^9}},ExpressionUUID->"8b97cb6d-dea7-4d94-965c-\
+8ad734799401"],
 
-Cell[BoxData["\<\"Click on the box -- this is for testing \.af\\\\_(\:30c4)_/\
-\.af\"\>"], "Print",
- CellChangeTimes->{{3.8799872976927743`*^9, 3.8799873447250338`*^9}},
+Cell[BoxData[
+ CheckboxBox[Dynamic[$CellContext`xa], {"XAxis", "XAxis"}]], "Print",
+ CellChangeTimes->{
+  3.8800659665517244`*^9, {3.880066479811614*^9, 3.8800665418239326`*^9}, {
+   3.8800666240638876`*^9, 3.8800666250498443`*^9}},
  CellLabel->
   "During evaluation of \
-In[48]:=",ExpressionUUID->"0eb0f12c-afdc-4cd2-8a0d-5f0dba6ea97f"]
+In[144]:=",ExpressionUUID->"95bcd1d5-c011-45fb-b05b-dd229d93da16"]
 }, Open  ]]
 },
-WindowSize->{1440., 777.75},
-WindowMargins->{{-6, Automatic}, {Automatic, -6}},
+WindowSize->{1080., 642.75},
+WindowMargins->{{Automatic, -1086}, {-54, Automatic}},
 FrontEndVersion->"13.1 for Microsoft Windows (64-bit) (August 22, 2022)",
 StyleDefinitions->"ReverseColor.nb",
 ExpressionUUID->"1a4eea07-be44-49d2-a00a-b718f862ca27"
@@ -339,10 +336,15 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 13483, 275, 1280, "Code",ExpressionUUID->"120a1e73-496e-4962-916f-278df1b1523c"],
 Cell[CellGroupData[{
-Cell[14066, 299, 958, 15, 28, "Input",ExpressionUUID->"de2bf7f7-92e9-4d81-8ac3-14e06d614ea6"],
-Cell[15027, 316, 274, 5, 22, "Print",ExpressionUUID->"0eb0f12c-afdc-4cd2-8a0d-5f0dba6ea97f"]
+Cell[580, 22, 3289, 47, 50, "Code",ExpressionUUID->"120a1e73-496e-4962-916f-278df1b1523c"],
+Cell[3872, 71, 4138, 129, 197, "Print",ExpressionUUID->"8070c088-44db-42a1-8402-96d52ab6d2eb"],
+Cell[8013, 202, 3252, 80, 32, "Output",ExpressionUUID->"82a70225-8b66-44a8-b654-c30414a3c76e"]
+}, Open  ]],
+Cell[11280, 285, 209, 4, 28, "Input",ExpressionUUID->"c7c1d670-e959-4c2d-8490-82781eae5805"],
+Cell[CellGroupData[{
+Cell[11514, 293, 607, 16, 67, "Input",ExpressionUUID->"8b97cb6d-dea7-4d94-965c-8ad734799401"],
+Cell[12124, 311, 338, 7, 22, "Print",ExpressionUUID->"95bcd1d5-c011-45fb-b05b-dd229d93da16"]
 }, Open  ]]
 }
 ]
