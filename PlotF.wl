@@ -6,17 +6,6 @@
  * Hopefully this helps you out!
  *)
 
-CustomPlot[f_, xMin_, xMax_] := 
-   Module[
-      {xValues, yValues},
-
-      xValues = Range[xMin, xMax, 0.1];
-      yValues = f /@ xValues;
-      ListLinePlot[
-         Transpose[{xValues, yValues}]
-      ]
-   ]
-
 FindDerivative[expr_] := 
    Return[
       D[expr, x]
@@ -35,46 +24,21 @@ FindInverse[expr_] :=
       ]
    ]
 
-
 PlotF[
       expr_,
       options:OptionsPattern[]
    ] := 
    DynamicModule[
-      {derivative, inverse, simplified, showDerivative = False, showInverse = False},
+      {derivative, inverse, simplified},
 
       derivative = FindDerivative[expr];
       inverse = FindInverse[expr];
       simplified = Simplify[expr];
 
-      Print["Derivative: |", derivative, "|\r\n"];
-      Print["Inverse:    |", inverse, "|\r\n"];
-      Print["Simplified: |", simplified, "|\r\n"];
-
-      Grid[
-         {
-            {
-               Row[{"Show derivative ", Checkbox[
-                  Dynamic[showDerivative]
-               ],
-                  showDerivative
-               }],
-               Row[{"Show inverse", Checkbox[
-                  Dynamic[showInverse]
-               ],
-                  showInverse
-               }]
-            },
-            {
-               Plot[{
-                     expr,
-                     If[showDerivative, Return[derivative], {}],
-                     If[showInverse, Return[inverse], {}]
-                  }, {x, 10, -10}]
-            }
-         }
-      ]
+      Print["Derivative", derivative, "--", "Inverse", inverse, "--", "Simplified", simplified];
    
+      Print[ Plot[expr, {x, -10, 10}, options], Plot[derivative, {x, -10, 10}, options], Plot[inverse, {x, -10, 10}, options] ];
+
    ]
 
 (* End::Package:: *)
